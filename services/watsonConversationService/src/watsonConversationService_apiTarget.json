@@ -1,0 +1,253 @@
+{
+  "tags" : [ {
+    "description" : "Rest service swagger documentation",
+    "name" : "RestServiceVirtualController"
+  } ],
+  "basePath" : "${rest.watsonConversationService.basepath}",
+  "paths" : {
+    "/api/v1/workspaces/{wpid}/message" : {
+      "x-WM-BASE_PATH" : "/api/v1/workspaces/{wpid}/message",
+      "x-WM-TAG" : "RestServiceVirtualController",
+      "post" : {
+        "tags" : [ "RestServiceVirtualController" ],
+        "x-WM-METHOD_NAME" : "invoke",
+        "x-WM-ACCESS_SPECIFIER" : "APP_ONLY",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "WM_Rest_Service_Authorization" : [ ]
+        } ],
+        "parameters" : [ {
+          "schema" : {
+            "$ref" : "#/definitions/RootRequest"
+          },
+          "x-WM-FULLY_QUALIFIED_TYPE" : "java.lang.Object",
+          "description" : "RequestBody",
+          "name" : "RequestBody",
+          "required" : false,
+          "in" : "body"
+        }, {
+          "description" : "version",
+          "name" : "version",
+          "x-WM-EDITABLE" : false,
+          "format" : "string",
+          "type" : "string",
+          "required" : false,
+          "in" : "query"
+        }, {
+          "name" : "wpid",
+          "type" : "string",
+          "required" : true,
+          "in" : "path"
+        } ],
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/RootResponse"
+            },
+            "description" : "Success"
+          }
+        },
+        "operationId" : "watsonConversationService_RestServiceVirtualController-invoke"
+      },
+      "x-WM-RELATIVE_PATH" : "",
+      "x-WM-COMPLETE_PATH" : "${rest.watsonConversationService.scheme}://${rest.watsonConversationService.host}${rest.watsonConversationService.basepath}/api/v1/workspaces/{wpid}/message"
+    }
+  },
+  "host" : "${rest.watsonConversationService.host}",
+  "schemes" : [ "${rest.watsonConversationService.scheme}" ],
+  "swagger" : "2.0",
+  "definitions" : {
+    "RootResponse" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "input" : {
+          "$ref" : "#/definitions/input"
+        },
+        "intents" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/intentsEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "context" : {
+          "$ref" : "#/definitions/context"
+        },
+        "alternate_intents" : {
+          "type" : "boolean"
+        },
+        "output" : {
+          "$ref" : "#/definitions/output"
+        },
+        "entities" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        }
+      },
+      "required" : [ "alternate_intents", "context", "entities", "input", "intents", "output" ]
+    },
+    "RootRequest" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.RootRequest",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "input" : {
+          "$ref" : "#/definitions/input"
+        },
+        "alternate_intents" : {
+          "type" : "boolean"
+        }
+      },
+      "required" : [ "alternate_intents", "input" ]
+    },
+    "input" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.input",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "text" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "text" ]
+    },
+    "system" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.system",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "branch_exited" : {
+          "type" : "boolean"
+        },
+        "dialog_request_counter" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "_node_output_map" : {
+          "$ref" : "#/definitions/_node_output_map"
+        },
+        "dialog_stack" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/dialog_stackEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "branch_exited_reason" : {
+          "type" : "string"
+        },
+        "dialog_turn_counter" : {
+          "format" : "int32",
+          "type" : "integer"
+        }
+      },
+      "required" : [ "_node_output_map", "branch_exited", "branch_exited_reason", "dialog_request_counter", "dialog_stack", "dialog_turn_counter" ]
+    },
+    "dialog_stackEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.dialog_stackEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "dialog_node" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "dialog_node" ]
+    },
+    "java.lang.Object" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.java.lang.Object",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "context" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.context",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "system" : {
+          "$ref" : "#/definitions/system"
+        },
+        "conversation_id" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "conversation_id", "system" ]
+    },
+    "_node_output_map" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService._node_output_map",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "node_16_1488914274864" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        }
+      },
+      "required" : [ "node_16_1488914274864" ]
+    },
+    "output" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.output",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "nodes_visited" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "text" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "log_messages" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        }
+      },
+      "required" : [ "log_messages", "nodes_visited", "text" ]
+    },
+    "intentsEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonConversationService.intentsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "confidence" : {
+          "format" : "double",
+          "type" : "number"
+        },
+        "intent" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "confidence", "intent" ]
+    }
+  },
+  "securityDefinitions" : {
+    "WM_Rest_Service_Authorization" : {
+      "type" : "basic"
+    }
+  },
+  "info" : {
+    "x-WM-SERVICE_TYPE" : "RestService",
+    "x-WM-API_ID" : "363aacaf-02b1-4b11-b5a9-9c4197ec01d0",
+    "x-WM-USE_PROXY_FOR_WEB" : true,
+    "x-WM-SERVICE_ID" : "watsonplatform",
+    "x-WM-USE_PROXY_FOR_MOBILE" : true,
+    "version" : "2.0"
+  }
+}

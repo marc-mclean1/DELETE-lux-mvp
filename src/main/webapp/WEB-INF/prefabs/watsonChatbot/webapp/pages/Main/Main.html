@@ -1,0 +1,33 @@
+<wm-page data-ng-controller="WatsonChatbotController" name="page1">
+    <wm-content name="content1">
+        <wm-container name="chatcontent" overflow="auto" class="chat-content">
+            <wm-livelist template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list chat" dataset="bind:_dataset" navigation="None" name="chatmessageList" nodatamessage="Start Chat by entering message" listclass="list-group">
+                <wm-listtemplate layout="inline" name="listtemplate1">
+                    <wm-container ng-if="!!item.usermessage" name="container5">
+                        <wm-container class="popover pull-right user-message" ng-if="!!item.usermessage" name="container5">
+                            <wm-label name="usermessage" caption="bind:item.usermessage" class="media-heading"></wm-label>
+                        </wm-container>
+                    </wm-container>
+                    <!--wm-icon name="icon1" class="bot-pic bg-primary" iconclass="wi wi-settings-ethernet fa-2x" ng-if="!!item.chatbotmessage"></wm-icon-->
+                    <wm-picture name="picture1" picturesource="resources/images/imagelists/Watson_Logo_New_Larger.png" width="30px" ng-if="!!item.chatbotmessage"></wm-picture>
+                    <wm-container class="popover bot-message" ng-if="!!item.chatbotmessage" name="container6">
+                        <wm-label caption="bind:item.chatbotmessage" class="media-heading" name="botmessage"></wm-label>
+                    </wm-container>
+                </wm-listtemplate>
+            </wm-livelist>
+            <wm-message name="bookCheckMessage" type="loading" caption="Please wait.. " hideclose="true" show="bind:isBotBusy"></wm-message>
+        </wm-container>
+        <wm-container name="messageformContainer" class="chat-footer">
+            <wm-form errormessage="" captionposition="top" captionalign="left" name="messageForm" on-submit="Widgets.messageForm.reset();" class="messgeform">
+                <wm-container class="media" height="100%" name="container5_1">
+                    <wm-container class="media-body" name="gridcolumn1">
+                        <wm-text name="message" height="30pt" placeholder="Enter your message here" disabled="bind:isBotBusy"></wm-text>
+                    </wm-container>
+                    <wm-container class="media-right media-middle" name="gridcolumn2">
+                        <wm-button class="btn-transparent" type="submit" margin="unset 0.5em" name="sendBtn" iconclass="wi wi-paper-plane" fontsize="18" fontunit="pt" width="60%" on-click="sendBtnClick($event, $scope)"></wm-button>
+                    </wm-container>
+                </wm-container>
+            </wm-form>
+        </wm-container>
+    </wm-content>
+</wm-page>

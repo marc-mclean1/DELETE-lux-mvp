@@ -1,0 +1,44 @@
+<wm-partial data-ng-controller="CommonPageController" name="CommonPage">
+    <wm-view name="loginDialogView" class="dialog-view">
+        <wm-logindialog modal="true" name="CommonLoginDialog" iconclass="wi wi-sign-in" title="Login" on-submit="Variables.loginVariable.invoke()" on-error="CommonLoginDialogError($event, $scope)" on-success="CommonLoginDialogSuccess($event, $scope)">
+            <wm-form name="loginform">
+                <wm-message scopedataset="loginMessage" class="app-login-dialog-message" name="loginmessage"></wm-message>
+                <wm-layoutgrid name="layoutgrid1">
+                    <wm-gridrow name="gridrow1">
+                        <wm-gridcolumn name="gridcolumn1">
+                            <wm-composite name="usernamefield">
+                                <wm-label class="col-md-3 control-label" caption="Username" name="usernamelabel"></wm-label>
+                                <wm-container class="col-md-9" name="container1">
+                                    <wm-text placeholder="Enter username" class="col-md-8 app-login-dialog-username" name="usernametext" autocomplete="off" autocorrect="off" autocapitalize="off"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                    <wm-gridrow name="gridrow2">
+                        <wm-gridcolumn name="gridcolumn2">
+                            <wm-composite name="passwordfield">
+                                <wm-label class="col-md-3 control-label" caption="Password" name="passwordlabel"></wm-label>
+                                <wm-container class="col-md-9" name="container2">
+                                    <wm-text type="password" placeholder="Enter password" class="col-md-8 app-login-dialog-password" name="passwordtext" autocomplete="off" autocorrect="off" autocapitalize="off"></wm-text>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-layoutgrid>
+            </wm-form>
+            <wm-dialogactions>
+                <wm-button class='btn-primary' caption='Sign in' data-role='loginbutton'></wm-button>
+            </wm-dialogactions>
+        </wm-logindialog>
+    </wm-view>
+    <wm-view name="CommonAlertDialogView" class="dialog-view">
+        <wm-alertdialog name="CommonAlertDialog" controller="NotificationDialogController" notificationdialog="alert" message="{{notification.text}}" title="{{notification.title}}" oktext="{{notification.okButtonText}}" alerttype="{{notification.alerttype}}"
+                        on-ok="variableOnOk()" on-close="variableOnClose()">
+        </wm-alertdialog>
+    </wm-view>
+    <wm-view name="CommonConfirmDialogView" class="dialog-view">
+        <wm-confirmdialog name="CommonConfirmDialog" controller="NotificationDialogController" notificationdialog="confirm" message="{{notification.text}}" title="{{notification.title}}" oktext="{{notification.okButtonText}}" canceltext="{{notification.cancelButtonText}}"
+                          on-ok="variableOnOk()" on-cancel="variableOnCancel()">
+        </wm-confirmdialog>
+    </wm-view>
+</wm-partial>

@@ -1,0 +1,41 @@
+{
+  "endpointAddress" : "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/aefe0ce8-51e9-4584-b2cc-945612fd1029/message",
+  "method" : "POST",
+  "requestBody" : "{\n        \"input\": {\n            \"text\": \"cyan\"\n        },\n        \"alternate_intents\": true\n    }",
+  "headers" : {
+    "Authorization" : [ "Basic YjQ0YWE4OWYtZjJlNi00ZGRjLWJkNGEtNzU2OTg5OTE0MmY0OlhMMEJrSUNHOHp5Qw==" ]
+  },
+  "queryParams" : {
+    "version" : "2017-04-21"
+  },
+  "sampleHttpResponseDetails" : {
+    "responseBody" : "{\"intents\":[{\"intent\":\"project_inquiry\",\"confidence\":0.12376484870910645}],\"entities\":[],\"input\":{\"text\":\"cyan\"},\"output\":{\"log_messages\":[],\"text\":[\"Sorry I didn't understand that (anything_else)\"],\"nodes_visited\":[\"node_16_1488914274864\"]},\"context\":{\"conversation_id\":\"bba10bca-c5a1-49a1-8c68-4fb0198f4c29\",\"system\":{\"dialog_stack\":[{\"dialog_node\":\"root\"}],\"dialog_turn_counter\":1,\"dialog_request_counter\":1,\"_node_output_map\":{\"node_16_1488914274864\":[0]},\"branch_exited\":true,\"branch_exited_reason\":\"completed\"}},\"alternate_intents\":true}",
+    "convertedResponse" : null,
+    "statusCode" : 200,
+    "headers" : {
+      "X-Backside-Transport" : [ "OK OK" ],
+      "Connection" : [ "Keep-Alive" ],
+      "Transfer-Encoding" : [ "chunked" ],
+      "X-Frame-Options" : [ "SAMEORIGIN" ],
+      "Strict-Transport-Security" : [ "max-age=31536000;" ],
+      "ETag" : [ "W/\"21f-TGs1iU/8N+Pb4seOpO7Y+w\"" ],
+      "X-Content-Type-Options" : [ "nosniff" ],
+      "X-Download-Options" : [ "noopen" ],
+      "X-DNS-Prefetch-Control" : [ "off" ],
+      "Vary" : [ "Accept-Encoding" ],
+      "X-XSS-Protection" : [ "1; mode=block" ],
+      "Date" : [ "Thu, 11 May 2017 01:48:34 GMT" ],
+      "Content-Type" : [ "application/json;charset=utf-8" ],
+      "Server" : [ "-" ],
+      "Set-Cookie" : [ "Watson-DPAT=rE0VUvwmAYqX1HUKg8mGfX%2BugSGTujMxcm6aLDFYIkCGewnJm1i0TiwfN3nvjeGDGVByz0JRceyX5u1%2Bq0ah0DvrB1pYCmXoFXdfLpAZ%2FB8yaw9ecuAoqBXvcY4zWUrq6C9kOCpqzf3K24kWx5BPHesXUriSJRw%2FOxiIeotbA5rHpPaKE5SOCrEoMafmLfMoDHIfv9Wg75JWCC448pT%2FlEVRksGqaXBlYk%2BonCcPh6aG6%2BZLC7h62GK%2F4A3KIFIJho0qjq5sUL%2F5vgUEfQaSY4TMeV2bFq0Zi6xQ3sho1kZ8%2B3%2BidJ0DlW80zsgcKlNS9We8VSK8kZHU98IpJOm%2FpBqPWzxJlP3XuEiXpVjTCQ7RSKK%2F8ZrY4Ltj689MXthUU5DI7YXOThcpcio2Dvd5TWGeM%2FXFU%2FDue9WBDzIvqSVhohfjY2l%2F%2BMSklM8OIL2c4V6yI6DCbeUADzFld85pCK0zKG%2BFUsuffkVpoq1qDWWGxyPNBNHV0l3Nw85CJRBdag31eWmRqygnbfHfghled933LJmGpmp0lnMFc%2F9iKK59c6kxO8K70CQdN1xwGmsjmQsWDDrHLeXWxbfjxPlcbAse8V%2F0uX2f5EC8CLp8%2BYcOcQGQhz0ovr43zqPGWFkuqnFSVwz8I%2BM6I9uKLpFLu%2F67aS1TqOWWDSF1KDJO%2BG%2Bp8hDNBkD8ofZwpPutlvGRJ8YVFmZKo6umFOkVGtgHdLRlC%2BDXn%2FgU105DXppl1fj38ZokT9IYBDnJj%2FoOVeVEihpAsj7NBmlJhGd2GDoVXQEbH88BZhKt3%2FzqElx%2F1GWXHy6fcx%2F3mxsLJC9Tcr4fq0p4KTcL09FPXXtj3tUvONUCPzk7IWI%2BvO%2FHagr3yJXGFqSuijNqN%2FRyYKt%2BuEkrhMoIjbwhWc%2FzcM365xhkmQBzOmNDhoGNxeDjtIaTx6rzdMa5CU4NVtRkkQ%2BRyYDTch8YwmHJlwDAqVsRnUg%2Few%3D%3D; path=/conversation/api; secure; HttpOnly" ],
+      "X-Client-IP" : [ "52.203.158.64" ],
+      "X-Global-Transaction-ID" : [ "741278996" ],
+      "X-DP-Watson-Tran-ID" : [ "gateway-dp01-741278996" ]
+    }
+  },
+  "redirectEnabled" : true,
+  "proxy" : null,
+  "authType" : "BASIC",
+  "contentType" : "application/json",
+  "multiParamInfoList" : null
+}

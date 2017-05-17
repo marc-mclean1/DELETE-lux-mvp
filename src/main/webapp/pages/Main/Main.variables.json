@@ -1,0 +1,120 @@
+{
+  "invokeConversationService" : {
+    "_id" : "wm-invokeConversationService-wm.ServiceVariable-1494455842993",
+    "name" : "invokeConversationService",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "version",
+      "value" : "2017-04-21",
+      "type" : "string"
+    }, {
+      "target" : "wpid",
+      "value" : "aefe0ce8-51e9-4584-b2cc-945612fd1029",
+      "type" : "string"
+    }, {
+      "target" : "wm_auth_username",
+      "value" : "b44aa89f-f2e6-4ddc-bd4a-7569899142f4"
+    }, {
+      "target" : "wm_auth_password",
+      "value" : "XL0BkICG8zyC"
+    } ],
+    "type" : "watsonConversationService.RootResponse",
+    "service" : "watsonConversationService",
+    "operation" : "invoke",
+    "operationId" : "watsonConversationService_RestServiceVirtualController-invoke",
+    "operationType" : "post",
+    "serviceType" : "RestService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "RestServiceVirtual"
+  },
+  "invokeDiscoveryServiceWFilter" : {
+    "_id" : "wm-invokeDiscoveryService-wm.ServiceVariable-1493751898308",
+    "name" : "invokeDiscoveryServiceWFilter",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "count",
+      "value" : "200",
+      "type" : "string"
+    }, {
+      "target" : "offset",
+      "value" : "0",
+      "type" : "string"
+    }, {
+      "target" : "version",
+      "value" : "2016-11-07",
+      "type" : "string"
+    }, {
+      "target" : "wm_auth_username",
+      "value" : "e900188d-6dcf-40bc-b055-167b1a0825a1"
+    }, {
+      "target" : "wm_auth_password",
+      "value" : "7L2iZUXNUdbO"
+    }, {
+      "target" : "sort",
+      "value" : "-enriched_long-description.bvAverageRating",
+      "type" : "string"
+    } ],
+    "type" : "watsonDiscoveryWithFilter.RootResponse",
+    "service" : "watsonDiscoveryWithFilter",
+    "operation" : "invoke",
+    "operationId" : "watsonDiscoveryWithFilter_RestServiceVirtualController-invoke",
+    "operationType" : "get",
+    "serviceType" : "RestService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "invokeDiscoveryServiceonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "RestServiceVirtual",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Querying the service... Please  wait..."
+  },
+  "invokeNLUService" : {
+    "_id" : "wm-invokeNLUService-wm.ServiceVariable-1493748439123",
+    "name" : "invokeNLUService",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "version",
+      "value" : "2017-02-27",
+      "type" : "string"
+    }, {
+      "target" : "wm_auth_username",
+      "value" : "ee77d21b-7ebd-4bac-98dc-b0b6557db8b6"
+    }, {
+      "target" : "wm_auth_password",
+      "value" : "cQ34xh0enAcG"
+    } ],
+    "type" : "watsonNLUService.RootResponse",
+    "service" : "watsonNLUService",
+    "operation" : "invoke",
+    "operationId" : "watsonNLUService_RestServiceVirtualController-invoke",
+    "operationType" : "post",
+    "serviceType" : "RestService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "invokeNLUServiceonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "RestServiceVirtual",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Analyzing the text... Please  wait..."
+  }
+}

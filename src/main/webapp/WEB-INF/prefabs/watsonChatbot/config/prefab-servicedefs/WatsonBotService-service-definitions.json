@@ -1,0 +1,31 @@
+{
+  "WatsonBotController_interactWithBot" : {
+    "id" : "WatsonBotController_interactWithBot",
+    "service" : "WatsonBotService",
+    "controller" : "WatsonBotController",
+    "operationType" : null,
+    "type" : null,
+    "wmServiceOperationInfo" : {
+      "name" : "interactWithBot",
+      "methodType" : "post",
+      "relativePath" : "/watsonBot/interactWithBot",
+      "directPath" : "/watsonBot/interactWithBot",
+      "httpMethod" : "post",
+      "parameters" : [ {
+        "name" : "Object",
+        "parameterType" : "body",
+        "type" : "java.lang.Object",
+        "required" : true,
+        "contentType" : null
+      } ],
+      "definitions" : { },
+      "produces" : [ "application/json" ],
+      "consumes" : null,
+      "authorization" : null,
+      "proxySettings" : {
+        "web" : true,
+        "mobile" : true
+      }
+    }
+  }
+}

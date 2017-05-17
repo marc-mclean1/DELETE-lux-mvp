@@ -1,0 +1,43 @@
+{
+  "svDiscoveryWithFilter" : {
+    "_id" : "wm-svDiscoveryWithFilter-wm.ServiceVariable-1493789135229",
+    "name" : "svDiscoveryWithFilter",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "count",
+      "value" : "200",
+      "type" : "string"
+    }, {
+      "target" : "filter",
+      "value" : "bind:\"display-name:\" + Widgets.text1.datavalue + \"|color:blue\"",
+      "type" : "string"
+    }, {
+      "target" : "version",
+      "value" : "2016-11-07",
+      "type" : "string"
+    }, {
+      "target" : "wm_auth_username",
+      "value" : "e900188d-6dcf-40bc-b055-167b1a0825a1"
+    }, {
+      "target" : "wm_auth_password",
+      "value" : "7L2iZUXNUdbO"
+    } ],
+    "type" : "watsonDiscoveryWithFilter.RootResponse",
+    "service" : "watsonDiscoveryWithFilter",
+    "operation" : "invoke",
+    "operationId" : "watsonDiscoveryWithFilter_RestServiceVirtualController-invoke",
+    "operationType" : "get",
+    "serviceType" : "RestService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "Javascript",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "RestServiceVirtual"
+  }
+}

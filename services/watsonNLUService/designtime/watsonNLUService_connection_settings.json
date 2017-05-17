@@ -1,0 +1,36 @@
+{
+  "endpointAddress" : "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze",
+  "method" : "POST",
+  "requestBody" : "{\n        \"text\": \"I need a red volvo bus\",\n        \"features\": {\n            \"entities\": {\n                \"emotion\": true,\n                \"sentiment\": true,\n                \"limit\": 2\n            },\n            \"keywords\": {\n                \"emotion\": true,\n                \"sentiment\": true,\n                \"limit\": 2\n            },\n            \"categories\": {\n                \"emotion\": true,\n                \"sentiment\": true,\n                \"limit\": 2\n            }\n        }\n    }",
+  "headers" : {
+    "Authorization" : [ "Basic ZWU3N2QyMWItN2ViZC00YmFjLTk4ZGMtYjBiNjU1N2RiOGI2OmNRMzR4aDBlbkFjRw==" ]
+  },
+  "queryParams" : {
+    "version" : "2017-02-27"
+  },
+  "sampleHttpResponseDetails" : {
+    "responseBody" : "{\"keywords\":[{\"text\":\"red volvo bus\",\"sentiment\":{\"score\":-0.446483},\"relevance\":0.96614,\"emotion\":{\"sadness\":0.163693,\"joy\":0.009386,\"fear\":0.132246,\"disgust\":0.341902,\"anger\":0.495141}}],\"entities\":[{\"type\":\"Company\",\"text\":\"volvo\",\"sentiment\":{\"score\":-0.446483},\"relevance\":0.33,\"emotion\":{\"sadness\":0.163693,\"joy\":0.009386,\"fear\":0.132246,\"disgust\":0.341902,\"anger\":0.495141},\"disambiguation\":{\"subtype\":[\"AwardWinner\"],\"name\":\"Volvo\",\"dbpedia_resource\":\"http://dbpedia.org/resource/Volvo\"},\"count\":1}],\"categories\":[{\"score\":0.988385,\"label\":\"/automotive and vehicles/vehicle brands/volvo\"},{\"score\":0.142073,\"label\":\"/travel/transports/public transport\"},{\"score\":0.0301219,\"label\":\"/automotive and vehicles/cars\"}],\"language\":\"en\"}",
+    "convertedResponse" : null,
+    "statusCode" : 200,
+    "headers" : {
+      "X-Backside-Transport" : [ "OK OK" ],
+      "Connection" : [ "Keep-Alive" ],
+      "Transfer-Encoding" : [ "chunked" ],
+      "date" : [ "Tue, 02 May 2017 17:52:41 GMT" ],
+      "x-request-id" : [ "jgboaued1t4ft6rougfvkff1f4o5upp2" ],
+      "cache-control" : [ "max-age=0, private, must-revalidate" ],
+      "Content-Type" : [ "application/json;charset=utf-8" ],
+      "Server" : [ "-" ],
+      "Set-Cookie" : [ "Watson-DPAT=Apu1HgJej2NUwSxhL11PjjdclMwpcECci%2Fkuo%2BGrbbfSxC09q%2FhmZ8OVCs59qjs%2BGD2uBY0n8%2FidFJZUBYs5SzEwtxwUJ%2B5%2Fg3xleUrmsyQGwFyX5CpPmC6yUBTe9K2Hgs9ApkFM917A1VTu3scUN95Ii4mYDRAGP7J4nLs60Lwj9blNj%2BQDS3lMuFclfvB334xFwLuRMRq3%2BPPkdp8qwcvQL3yoWaI2NwTWVk1vPF3m%2B%2BsOvH3ETUtkAWtGV9qYuCKJo5nIi5jnsdKtymBunRJDXd2vNAabwEvheJAySY4j%2FDZrkd68vMYuTfgfaFv1BBquQJS5n%2F2Flc85dG45tdELmV6r98wLcnCNyo2Enk4Hqi6rtH3ZRtUZ%2BBTWHbGhcFjvDXG%2FfS0rWjXhpMAU0pjXvHK4XEtrcdsRFUGHOHJ0NtsoRiMndsIiWKlKkd6vyoxsXNT%2Fml6JS58HGl%2BAzuNPRtus4anWYnxM%2FotcxtFITJQhjSOR85HRYw6Nrbc13B5cg1LUckKLyMvNt6Q8LXu1v8AGGJYABJnJr%2Fps%2BuUD7av1Hypn5J2UaZ0WmUzqPLwcsSLGdKgIlajrgKXD6YlxkOJIxCBdKhljcO5uiFHEhLlhCJt9XaKR2jkZtc1qToo9ilpOL%2BnlwxruLWgoOlyGpFPsnlwQP0j8nvJtVLi0YOG2%2B4pyQE5WLX%2BDQEv3e8PNoCHsVV0tpBPc1wKgQKE9j51fP5jDMcVnd20Az7Ye9onWHdrQQkbRmTcpGuwxRAxn%2B3vHCvaaNMptfz5LuheASrFAxAFfjAMCpx%2FK0LqsXit1MhIxLg30nvR3RLRQchhSxBihCs5%2BpHdSMRI6%2FDjsdVC6a9HsiGbCFX5e%2BOsEtrVhV%2BPPFP33bKLqCFy5SI7myzQ%2F%2Fncrc%2B3Yp9RgJ3IBcqjXi%2FQAzJLco%2FkOs90z6QP0NlgPyLHWMgYV27zwfWY7QSwt%2FBR77fiBItnxIoMqw7C3g8WILoc0wff%2FO9o%3D; path=/natural-language-understanding/api; secure; HttpOnly" ],
+      "X-Client-IP" : [ "52.203.158.64" ],
+      "X-Global-Transaction-ID" : [ "268051360" ],
+      "Strict-Transport-Security" : [ "max-age=31536000;" ],
+      "X-DP-Watson-Tran-ID" : [ "gateway-dp01-268051360" ]
+    }
+  },
+  "redirectEnabled" : true,
+  "proxy" : null,
+  "authType" : "BASIC",
+  "contentType" : "application/json",
+  "multiParamInfoList" : null
+}

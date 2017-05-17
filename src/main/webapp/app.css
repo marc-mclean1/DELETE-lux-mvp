@@ -1,0 +1,6 @@
+.wm-app .left-panel {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.wm-app .panel.search-box {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}

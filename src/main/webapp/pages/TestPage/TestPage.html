@@ -1,0 +1,30 @@
+<wm-page data-ng-controller="TestPagePageController" pagetitle="Test Page" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-page-content columnwidth="12" name="page_content1">
+            <wm-composite name="composite1">
+                <wm-container class="col-md-9" name="container1">
+                    <wm-text name="text1" on-change="Variables.svDiscoveryWithFilter.invoke()"></wm-text>
+                </wm-container>
+            </wm-composite>
+            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list" dataset="bind:Variables.svDiscoveryWithFilter.dataSet.results" navigation="Basic" name="livelist1">
+                <wm-listtemplate layout="inline" name="listtemplate1">
+                    <wm-container class="media-left" name="container2">
+                        <wm-picture width="32pt" height="32pt" name="Picture" shape="circle" class="media-object" picturesource="bind:getProductImageUrl(item)"></wm-picture>
+                    </wm-container>
+                    <wm-container class="media-body" padding="unset unset unset 1.25em" name="container3">
+                        <wm-label name="Name" class="p media-heading" caption="bind:Variables.svDiscoveryWithFilter.dataSet.results[$i]['display-name']" fontsize="1.143" fontunit="em"></wm-label>
+                        <wm-label name="JobTitle" caption="bind:Variables.svDiscoveryWithFilter.dataSet.results[$i].color" class="p text-muted"></wm-label>
+                        <wm-label caption="bind:Variables.svDiscoveryWithFilter.dataSet.results[$i].score" class="p text-muted" name="label3"></wm-label>
+                    </wm-container>
+                    <wm-container class="media-right media-top" name="container4">
+                        <wm-button class="btn-transparent" iconclass="wi wi-share fa-2x" name="button1"></wm-button>
+                    </wm-container>
+                </wm-listtemplate>
+            </wm-livelist>
+            <wm-rating name="rating1" datavalue="3"></wm-rating>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

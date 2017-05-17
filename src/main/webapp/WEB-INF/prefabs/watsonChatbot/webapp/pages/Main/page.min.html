@@ -1,0 +1,271 @@
+<style id="Main.css">
+.chat-content {
+    height: calc(100% - 40pt);
+    background-color: rgba(0,0,0,0.05);
+    z-index: 1;
+    padding-right: 1em;
+}
+.chat .popover {
+    display: inline-block !important;
+    position: relative !important; 
+    padding: 0; 
+    max-width: 60%;
+    border-width: 0;
+    box-shadow: none; 
+    border-bottom-right-radius: 4pt;
+    border-bottom-left-radius: 4pt;
+    border-top-right-radius: 4pt;
+    min-width: auto;
+}
+/*.chat .popover.user-message {
+    background-color: rgba(168,168,168,0.1);
+    border-color: rgba(168,168,168,0.1);
+}
+.chat .popover.bot-message:before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    border-width: 3pt;
+    border-style: solid;
+    border-color: #fff;
+    left: -6pt;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+.chat .popover.user-message:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: -6pt;
+    border-width: 3pt;
+    border-style: solid;
+    border-color: inherit;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}*/
+/*****chat footer******/
+.chat-content ~ .chat-footer {
+    height: 40pt;
+    z-index: 2;
+}
+.chat-footer .app-textbox {
+    border-color: transparent;
+}
+
+/*********Label styling**********/
+.chat .popover label {
+    margin: 0;
+    padding: .5em 1em;
+}
+/*
+.chat .user-message {
+    border-top-right-radius: 0;
+    border-top-left-radius: 4pt;
+}
+*/
+.chat-content ul li {
+    padding: 1em;
+}
+.wm-app .panel.messgeform {
+    margin: 0;
+}
+.wm-app .panel.messgeform .panel-body{
+    padding: 4pt;
+}
+.wm-app .app-prefab .app-content {
+    height:100%;
+}
+.wm-app .bot-pic {
+    vertical-align: top;
+    margin-right: .8em;
+    border-radius: 50%;
+    padding: 4pt;
+}
+</style>
+<script id="Main.js">
+Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils", "$timeout", function($scope, $element, Utils, $timeout) {
+    "use strict";
+    $scope._dataset = [];
+
+    //sample request body necessary for the initial request
+    $scope.requestbody = {
+        "input": {
+            "text": ""
+        },
+        "alternate_intents": true
+    };
+    /*
+     * This function will be invoked when any of this prefab's property is changed
+     * @key: property name
+     * @newVal: new value of the property
+     * @oldVal: old value of the property
+     */
+    function propertyChangeHandler(key, newVal, oldVal) {
+
+    }
+
+    function sendRequestBody(val) {
+        $scope.requestbody.input.text = val || $scope.message;
+        $scope.Variables.invokeWatson.setInput('Object', $scope.requestbody);
+        $scope.Variables.invokeWatson.invoke();
+    }
+
+    /* register the property change handler */
+    $scope.propertyManager.add($scope.propertyManager.ACTIONS.CHANGE, propertyChangeHandler);
+
+    $scope.onInitPrefab = function() {
+        // this method will be triggered post initialization of the prefab.
+
+        //invoke the variable
+        sendRequestBody();
+    };
+
+    $scope.sendBtnClick = function($event, $isolateScope) {
+        $scope.message = $scope.Widgets.messageForm.formWidgets.message.datavalue;
+
+        //if there is empty message return back do not engage
+        if (!$scope.message) {
+            return;
+        }
+
+        //set the input message in the request body
+        sendRequestBody($scope.message);
+
+        //push the message from the input box to dataset as "usermessage"
+        $scope._dataset.push({
+            "usermessage": $scope.message
+        });
+        //scroll the chat to the end
+        scrollChat();
+    };
+
+    function scrollChat() {
+        $timeout(function() {
+            //scroll the chat as soon as a message appends in the list
+            $element.find('.chat-content').animate({
+                scrollTop: WM.element('.chat-content')[0].scrollHeight
+            }, 1000);
+            //focus the element after sending the message
+            $element.find('[name=message]').focus();
+        });
+
+    }
+
+    $scope.disableChat = function() {
+        $scope.isBotBusy = true;
+        $scope.Widgets.messageForm.formWidgets.message.placeholder = "Please wait...";
+    };
+
+    $scope.enableChat = function() {
+        $scope.isBotBusy = false;
+        $scope.Widgets.messageForm.formWidgets.message.placeholder = "Enter text";
+    };
+
+    $scope.sendWatsonInput = function(val) {
+        //set the input message in the request body
+        sendRequestBody(val);
+    };
+
+
+    $scope.invokeWatsononSuccess = function(variable, data) {
+        var output_text = _.get(data, 'output.text');
+
+        //set the context we received from the watson in the request body as it is needed for next call
+        _.set($scope.requestbody, 'context', _.get(data, 'context'));
+
+        //execute the on watson response event
+        if ($scope.onWatsonresponse) {
+            var response = Utils.triggerFn($scope.onWatsonresponse);
+            if (response === false) {
+                return;
+            }
+        }
+
+        //watson may return multiple replies based on the context
+        _.forEach(output_text, function(val) {
+            $scope._dataset.push({ //push the message from the watson to dataset as "chatbotmessage"
+                "chatbotmessage": val
+            });
+        });
+
+        //scroll the chat to the end
+        scrollChat();
+    };
+
+}]);
+</script>
+<script id="Main.variables.json">
+var _MainPage_Variables_ ={
+  "invokeWatson" : {
+    "_id" : "wm-invokeWatson-wm.ServiceVariable-1491814738861",
+    "name" : "invokeWatson",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "service" : "WatsonBotService",
+    "operation" : "interactWithBot",
+    "operationId" : "WatsonBotController_interactWithBot",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "onSuccess" : "Javascript",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "WatsonBot"
+  },
+  "supportedLocale" : {
+    "_id" : "wm-wm.Variable1402640443182",
+    "name" : "supportedLocale",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataSet" : {
+      "en" : "English"
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  }
+}
+</script>
+<script id="Main.html" type="text/ng-template">
+<wm-page data-ng-controller="WatsonChatbotController" name="page1">
+    <wm-content name="content1">
+        <wm-container name="chatcontent" overflow="auto" class="chat-content">
+            <wm-livelist template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list chat" dataset="bind:_dataset" navigation="None" name="chatmessageList" nodatamessage="Start Chat by entering message" listclass="list-group">
+                <wm-listtemplate layout="inline" name="listtemplate1">
+                    <wm-container ng-if="!!item.usermessage" name="container5">
+                        <wm-container class="popover pull-right user-message" ng-if="!!item.usermessage" name="container5">
+                            <wm-label name="usermessage" caption="bind:item.usermessage" class="media-heading"></wm-label>
+                        </wm-container>
+                    </wm-container>
+                    <!--wm-icon name="icon1" class="bot-pic bg-primary" iconclass="wi wi-settings-ethernet fa-2x" ng-if="!!item.chatbotmessage"></wm-icon-->
+                    <wm-picture name="picture1" picturesource="resources/images/imagelists/Watson_Logo_New_Larger.png" width="30px" ng-if="!!item.chatbotmessage"></wm-picture>
+                    <wm-container class="popover bot-message" ng-if="!!item.chatbotmessage" name="container6">
+                        <wm-label caption="bind:item.chatbotmessage" class="media-heading" name="botmessage"></wm-label>
+                    </wm-container>
+                </wm-listtemplate>
+            </wm-livelist>
+            <wm-message name="bookCheckMessage" type="loading" caption="Please wait.. " hideclose="true" show="bind:isBotBusy"></wm-message>
+        </wm-container>
+        <wm-container name="messageformContainer" class="chat-footer">
+            <wm-form errormessage="" captionposition="top" captionalign="left" name="messageForm" on-submit="Widgets.messageForm.reset();" class="messgeform">
+                <wm-container class="media" height="100%" name="container5_1">
+                    <wm-container class="media-body" name="gridcolumn1">
+                        <wm-text name="message" height="30pt" placeholder="Enter your message here" disabled="bind:isBotBusy"></wm-text>
+                    </wm-container>
+                    <wm-container class="media-right media-middle" name="gridcolumn2">
+                        <wm-button class="btn-transparent" type="submit" margin="unset 0.5em" name="sendBtn" iconclass="wi wi-paper-plane" fontsize="18" fontunit="pt" width="60%" on-click="sendBtnClick($event, $scope)"></wm-button>
+                    </wm-container>
+                </wm-container>
+            </wm-form>
+        </wm-container>
+    </wm-content>
+</wm-page>
+</script>

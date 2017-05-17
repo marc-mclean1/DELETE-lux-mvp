@@ -1,0 +1,59 @@
+{
+  "displayName" : "watsonChatbot",
+  "group" : "",
+  "templateUrl" : "/pages/Main/Main.html",
+  "controllerUrl" : "/pages/Main/Main.js",
+  "variablesUrl" : "/pages/Main/Main.variables.json",
+  "iconUrl" : "/resources/images/imagelists/download.png",
+  "resources" : {
+    "styles" : [ "/pages/Main/Main.css" ],
+    "scripts" : [ ],
+    "modules" : [ ]
+  },
+  "properties" : {
+    "message" : {
+      "type" : "string",
+      "displayName" : "message",
+      "bindable" : "out-bound",
+      "widget" : "string",
+      "show" : false,
+      "disabled" : false
+    },
+    "conversation" : {
+      "type" : "string",
+      "displayName" : "Conversation",
+      "bindable" : "out-bound",
+      "value" : "bind:_dataset",
+      "widget" : "string",
+      "show" : false,
+      "disabled" : false
+    },
+    "enablechat" : {
+      "type" : "method",
+      "method" : "enableChat"
+    },
+    "disablechat" : {
+      "type" : "method",
+      "method" : "disableChat"
+    },
+    "onWatsonresponse" : {
+      "type" : "event",
+      "widget" : "eventlist",
+      "show" : true,
+      "disabled" : false
+    },
+    "send" : {
+      "type" : "method",
+      "method" : "sendWatsonInput"
+    },
+    "watsonresponse" : {
+      "type" : "string",
+      "displayName" : "Watsonresponse",
+      "bindable" : "out-bound",
+      "value" : "bind:Variables.invokeWatson.dataSet",
+      "widget" : "string",
+      "show" : false,
+      "disabled" : false
+    }
+  }
+}

@@ -1,0 +1,83 @@
+.chat-content {
+    height: calc(100% - 40pt);
+    background-color: rgba(0,0,0,0.05);
+    z-index: 1;
+    padding-right: 1em;
+}
+.chat .popover {
+    display: inline-block !important;
+    position: relative !important; 
+    padding: 0; 
+    max-width: 60%;
+    border-width: 0;
+    box-shadow: none; 
+    border-bottom-right-radius: 4pt;
+    border-bottom-left-radius: 4pt;
+    border-top-right-radius: 4pt;
+    min-width: auto;
+}
+/*.chat .popover.user-message {
+    background-color: rgba(168,168,168,0.1);
+    border-color: rgba(168,168,168,0.1);
+}
+.chat .popover.bot-message:before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    border-width: 3pt;
+    border-style: solid;
+    border-color: #fff;
+    left: -6pt;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+.chat .popover.user-message:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: -6pt;
+    border-width: 3pt;
+    border-style: solid;
+    border-color: inherit;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}*/
+/*****chat footer******/
+.chat-content ~ .chat-footer {
+    height: 40pt;
+    z-index: 2;
+}
+.chat-footer .app-textbox {
+    border-color: transparent;
+}
+
+/*********Label styling**********/
+.chat .popover label {
+    margin: 0;
+    padding: .5em 1em;
+}
+/*
+.chat .user-message {
+    border-top-right-radius: 0;
+    border-top-left-radius: 4pt;
+}
+*/
+.chat-content ul li {
+    padding: 1em;
+}
+.wm-app .panel.messgeform {
+    margin: 0;
+}
+.wm-app .panel.messgeform .panel-body{
+    padding: 4pt;
+}
+.wm-app .app-prefab .app-content {
+    height:100%;
+}
+.wm-app .bot-pic {
+    vertical-align: top;
+    margin-right: .8em;
+    border-radius: 50%;
+    padding: 4pt;
+}
