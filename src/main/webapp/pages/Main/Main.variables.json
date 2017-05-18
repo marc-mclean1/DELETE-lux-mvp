@@ -1,40 +1,4 @@
 {
-  "invokeConversationService" : {
-    "_id" : "wm-invokeConversationService-wm.ServiceVariable-1494455842993",
-    "name" : "invokeConversationService",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "version",
-      "value" : "2017-04-21",
-      "type" : "string"
-    }, {
-      "target" : "wpid",
-      "value" : "aefe0ce8-51e9-4584-b2cc-945612fd1029",
-      "type" : "string"
-    }, {
-      "target" : "wm_auth_username",
-      "value" : "b44aa89f-f2e6-4ddc-bd4a-7569899142f4"
-    }, {
-      "target" : "wm_auth_password",
-      "value" : "XL0BkICG8zyC"
-    } ],
-    "type" : "watsonConversationService.RootResponse",
-    "service" : "watsonConversationService",
-    "operation" : "invoke",
-    "operationId" : "watsonConversationService_RestServiceVirtualController-invoke",
-    "operationType" : "post",
-    "serviceType" : "RestService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "RestServiceVirtual"
-  },
   "invokeDiscoveryServiceWFilter" : {
     "_id" : "wm-invokeDiscoveryService-wm.ServiceVariable-1493751898308",
     "name" : "invokeDiscoveryServiceWFilter",

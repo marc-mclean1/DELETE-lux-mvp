@@ -3,46 +3,23 @@
     <wm-content name="content">
         <wm-page-content columnwidth="12" name="mainContent" padding="0px 0px unset 0px" backgroundimage="bind:(!Variables.invokeNLUService.dataSet.entities.length &amp;&amp; !Variables.invokeNLUService.dataSet.keywords.length &amp;&amp; !Variables.invokeDiscoveryServiceWFilter.dataSet.matching_results) ? 'resources/images/imagelists/IBM_Watson_logo.png' : 'xyz'"
         backgroundsize="400px,400px" backgroundrepeat="no-repeat" backgroundposition="center">
-            <wm-form errormessage="" captionposition="top" captionalign="left" name="messageForm" on-submit="messageFormSubmit($event, $scope, $formData);" class="messgeform search-box">
-                <wm-container class="input-group" name="container5_1" padding="1em">
-                    <wm-text name="message" placeholder="Enter text to analyze"></wm-text>
-                    <wm-container class="input-group-addon" name="container2">
-                        <wm-button class="btn-transparent" type="submit" name="sendBtn" iconclass="wi wi-analytics-circle"></wm-button>
-                    </wm-container>
-                </wm-container>
-            </wm-form>
-            <wm-layoutgrid name="layoutgrid2" show="bind:!!Variables.invokeNLUService.dataSet.entities || !!Variables.invokeNLUService.dataSet.keywords">
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn7" padding="1em" class="left-panel">
-                        <wm-accordion name="accordion1">
-                            <wm-accordionpane name="accordionpane1" title="Filter">
-                                <wm-label class="h3" caption="Conversation" name="label25" margin="0px unset"></wm-label>
-                                <wm-label class="h4" caption="Entities" margin="0px unset" name="label9"></wm-label>
-                                <wm-checkboxset name="entity_ConversationCheckbox" datafield="All Fields" dataset="bind:Variables.invokeConversationService.dataSet.entities" displayfield="value" listclass="list-group" itemclass="list-group-item"
-                                margin="0px unset unset unset"></wm-checkboxset>
-                                <wm-label class="h3" caption="NLU" margin="0px unset" name="label10"></wm-label>
-                                <wm-label class="h4" caption="Keywords" name="label3" margin="0px unset"></wm-label>
-                                <wm-checkboxset name="keywordCheckbox" datafield="All Fields" dataset="bind:Variables.invokeNLUService.dataSet.keywords" displayfield="text" listclass="list-group" itemclass="list-group-item" margin="0px unset unset unset"></wm-checkboxset>
-                                <wm-label class="h4" name="label1" caption="Entities" margin="0px unset"></wm-label>
-                                <wm-checkboxset name="entityCheckbox" datafield="All Fields" dataset="bind:Variables.invokeNLUService.dataSet.entities" displayfield="text" listclass="list-group" itemclass="list-group-item" margin="0px unset unset unset"></wm-checkboxset>
-                            </wm-accordionpane>
-                        </wm-accordion>
-                        <wm-button name="discoverButton" iconclass="wi wi-search fa-2x" caption="Browse Catalog" iconposition="left" class="btn-success p" on-click="discoverMoreClick($event, $isolateScope)" show="true" disabled="bind:!Widgets.entityCheckbox.datavalue.length &amp;&amp; !Widgets.keywordCheckbox.datavalue.length &amp;&amp; !Widgets.entity_ConversationCheckbox.datavalue.length"></wm-button>
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn1">
+                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot1" width="100%" height="650px" on-watsonresponse="watsonChatbot1Watsonresponse($scope)"></wm-prefab>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="9" name="gridcolumn8" padding="1em">
-                        <wm-label padding="unset 0.5em" name="label6" class="p" caption="bind:&quot;Found &quot; + Variables.invokeDiscoveryServiceWFilter.dataSet.matching_results + &quot; results&quot;" show="bind:!!Variables.invokeDiscoveryServiceWFilter.dataSet.matching_results"></wm-label>
-                        <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-3 lg-4" class="list-card" dataset="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results" navigation="Basic" showrecordcount="false"
-                        name="discoveryList" show="bind:!!Variables.invokeDiscoveryServiceWFilter.dataSet.results" pagesize="16" horizontalalign="left" navigationalign="right" on-setrecord="discoveryListSetrecord($event, $scope, $index, $data)">
-                            <wm-listtemplate layout="media" name="listtemplate1">
-                                <wm-card name="Picture" picturesource="bind:getProductImageUrl(item)">
-                                    <wm-card-content name="card_content2">
-                                        <wm-label name="Name" class="h4" margin="0px unset" caption="bind:getProductName(item)" whitespace="nowrap"></wm-label>
-                                        <wm-container name="container3">
-                                            <wm-rating name="rating1" datavalue="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i].bvAverageRating" show="bind:!!Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i].bvAverageRating" class="display-inline"></wm-rating>
-                                            <wm-label padding="unset 0.5em" name="label7" caption="bind:&quot;(&quot; + Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i].bvReviewCount + &quot;)&quot;" show="bind:!!Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i].bvAverageRating"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label8" caption="Not yet Rated!" show="bind:!Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i].bvAverageRating"></wm-label>
-                                        </wm-container>
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn2">
+                        <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-4 lg-4" class="list-card" dataset="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results" navigation="Pager" name="livelist3">
+                            <wm-listtemplate layout="media" name="listtemplate3">
+                                <wm-card name="Picture" title="" picturesource="bind:getProductImageUrl(item)">
+                                    <wm-card-content padding="1.5em unset unset unset" name="card_content3">
+                                        <wm-button class="btn-fab btn-warning pull-right btn-lg" caption="" type="button" name="button2" iconclass="wi wi-cart" margin="-3.5em 0.5em unset unset"></wm-button>
+                                        <wm-label name="Name" class="p text-muted" caption="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i]['display-name']"></wm-label>
+                                        <wm-label class="p text-muted" caption="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i]['long-description']" name="label6" show="false"></wm-label>
                                     </wm-card-content>
+                                    <wm-card-footer horizontalalign="center" name="card_footer3">
+                                        <wm-anchor caption="VIEW ALL SPECIFICATIONS" class="btn btn-transparent" name="anchor3"></wm-anchor>
+                                    </wm-card-footer>
                                 </wm-card>
                             </wm-listtemplate>
                         </wm-livelist>

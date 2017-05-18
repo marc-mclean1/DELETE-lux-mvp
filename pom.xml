@@ -20,13 +20,6 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
-                <directory>services/watsonConversationService/src</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <filtering>true</filtering>
                 <directory>services/watsonDiscoveryWithFilter/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -118,7 +111,6 @@
                         <configuration>
                             <sources>
                                 <source>services/securityService/src</source>
-                                <source>services/watsonConversationService/src</source>
                                 <source>services/watsonDiscoveryWithFilter/src</source>
                                 <source>services/watsonNLUService/src</source>
                             </sources>

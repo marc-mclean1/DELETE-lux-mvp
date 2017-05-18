@@ -148,10 +148,22 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
     }
 
     $scope.invokeNLUServiceonSuccess = function(variable, data) {
-        //needed to empty the datavalue as the widget has a minor bug
-        $scope.Widgets.entityCheckbox.datavalue = [];
-        $scope.Widgets.keywordCheckbox.datavalue = [];
-        $scope.Widgets.entity_ConversationCheckbox.datavalue = [];
+        console.log(variable, data);
+        var keywordParams = [],
+            entityParams = [];
+
+        _.forEach(data.entities, function(entity) {
+            pushToArrayIfNotPresent(entityParams, 'enriched_long-description.entities.type', entity.type);
+            pushToArrayIfNotPresent(entityParams, 'enriched_long-description.entities.text', entity.text);
+        });
+        _.forEach(data.keywords, function(keyword) {
+            pushToArrayIfNotPresent(keywordParams, 'enriched_long-description.keywords.text', keyword.text);
+        });
+        console.log(entityParams, keywordParams);
+        $scope.Variables.invokeDiscoveryServiceWFilter.setInput('query', keywordParams.length ? (keywordParams.join(',')) : "");
+        $scope.Variables.invokeDiscoveryServiceWFilter.setInput('filter', entityParams.length ? (entityParams.join(',')) : "");
+        $scope.Variables.invokeDiscoveryServiceWFilter.invoke();
+
     };
 
 
@@ -159,6 +171,38 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
         $("html, body").animate({
             scrollTop: 0
         }, "fast");
+    };
+
+
+    $scope.watsonChatbot1Watsonresponse = function($isolateScope) {
+        var convEntities = ['color', 'brand'];
+        var entityParams = [];
+        var data = $isolateScope.watsonresponse;
+        var conversationSuccess = false;
+        if (data && data.entities && data.entities.length) {
+            _.forEach(data.entities, function(entity) {
+                if (entity.confidence > 0.6) {
+                    if (_.includes(convEntities, entity.entity)) {
+                        pushToArrayIfNotPresent(entityParams, entity.entity, entity.value);
+                    } else {
+                        pushToArrayIfNotPresent(entityParams, 'enriched_long-description.entities.text', entity.value);
+                    }
+                    conversationSuccess = true;
+                }
+            });
+            console.log(entityParams, conversationSuccess);
+            if (conversationSuccess) {
+                $scope.Variables.invokeDiscoveryServiceWFilter.setInput('filter', entityParams.length ? (entityParams.join(',')) : "");
+                $scope.Variables.invokeDiscoveryServiceWFilter.invoke();
+            }
+        }
+
+        if (data.input.text && !conversationSuccess) {
+            $scope.requestBodyNLU.text = data.input.text;
+            $scope.Variables.invokeNLUService.setInput('RequestBody', $scope.requestBodyNLU);
+            $scope.Variables.invokeNLUService.invoke();
+        }
+
     };
 
 }]);
