@@ -15,6 +15,17 @@
     } ],
     "operation" : "toast"
   },
+  "goToPage_HelpWithChat" : {
+    "_id" : "wm-goToPage_HelpWithChat-wm.NavigationVariable-1495817387434",
+    "name" : "goToPage_HelpWithChat",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ ],
+    "operation" : "gotoPage",
+    "pageName" : "HelpWithChat",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "goToPage_Main" : {
     "_id" : "wm-wm.NavigationVariable1389180517517",
     "name" : "goToPage_Main",
