@@ -1,5 +1,5 @@
 var _WM_APP_PROPERTIES = {
-  "activeTheme" : "vermillion",
+  "activeTheme" : "material",
   "dateFormat" : "",
   "defaultLanguage" : "en",
   "displayName" : "ConversationNDiscovery",

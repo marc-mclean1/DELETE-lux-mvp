@@ -14,22 +14,32 @@
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-@brand-primary:         #ef6262;
-@brand-success:         #7accbe;
-@brand-info:            #8dcadf;
-@brand-warning:         #ffc870;
-@brand-danger:          #ef6262;
+@brand-primary:         #448AFF;
+@brand-success:         #4CAF50;
+@brand-info:            #03A9F4;
+@brand-warning:         #FFB300;
+@brand-danger:          #F44336;
 
 
 @font-face {
-  font-family: 'Open Sans';
-  src: url('fonts/opensans-regular-webfont.eot');
-  src: url('fonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
-  url('fonts/opensans-regular-webfont.woff2') format('woff2'),
-  url('fonts/opensans-regular-webfont.woff') format('woff'),
-  url('fonts/opensans-regular-webfont.ttf') format('truetype'),
-  url('fonts/opensans-regular-webfont.svg#open_sansregular') format('svg');
-  font-weight: 300;
+  font-family: 'robotoregular';
+  src: url('fonts/Roboto-Regular-webfont.eot');
+  src: url('fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/Roboto-Regular-webfont.woff') format('woff'),
+  url('fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+  url('fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Robotomedium';
+  src: url('fonts/Roboto-Medium.eot');
+  src: url('fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+  url('fonts/Roboto-Medium.woff') format('woff'),
+  url('fonts/Roboto-Medium.ttf') format('truetype'),
+  url('fonts/Roboto-Medium.svg#Robotomedium') format('svg');
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -38,9 +48,9 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #f0f0f0;
+@body-bg:               #f1f2f3;
 //** Global text color on `<body>`.
-@text-color:            #555555;
+@text-color:            #5e5e5e;
 
 //** Global textual link color.
 @link-color:            @brand-primary;
@@ -54,10 +64,10 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif:  'Open Sans', sans-serif;
-@font-family-serif:       'Open Sans', 'Arial', sans-serif;
+@font-family-sans-serif:  'robotoregular', 'Arial', sans-serif;
+@font-family-serif:       'robotoregular', 'Arial', sans-serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-@font-family-monospace:   'Open Sans', 'Arial', sans-serif;
+@font-family-monospace:   'robotoregular', 'Arial', sans-serif;
 @font-family-base:        @font-family-sans-serif;
 
 @font-size-base:          13px;
@@ -102,7 +112,7 @@
 @padding-base-vertical:     8px;
 @padding-base-horizontal:   12px;
 
-@padding-large-vertical:    12px;
+@padding-large-vertical:    13px;
 @padding-large-horizontal:  16px;
 
 @padding-small-vertical:    2px;
@@ -114,8 +124,8 @@
 @line-height-large:         1.3333333; // extra decimals for Win 8.1 Chrome
 @line-height-small:         1.5;
 
-@border-radius-base:        0px;
-@border-radius-large:       6px;
+@border-radius-base:        2px;
+@border-radius-large:       0px;
 @border-radius-small:       0px;
 
 //** Global color for active items (e.g., navs or dropdowns).
@@ -158,27 +168,27 @@
 
 @btn-default-color:              @text-color;
 @btn-default-bg:                 #fff;
-@btn-default-border:             transparent;
+@btn-default-border:             #ECEFF1;
 
 @btn-primary-color:              #fff;
 @btn-primary-bg:                 @brand-primary;
-@btn-primary-border:             @btn-primary-bg;
+@btn-primary-border:             darken(@btn-primary-bg, 5%);
 
 @btn-success-color:              #fff;
 @btn-success-bg:                 @brand-success;
-@btn-success-border:             @btn-success-bg;
+@btn-success-border:             darken(@btn-success-bg, 5%);
 
 @btn-info-color:                 #fff;
 @btn-info-bg:                    @brand-info;
-@btn-info-border:                @btn-info-bg;
+@btn-info-border:                darken(@btn-info-bg, 5%);
 
 @btn-warning-color:              #fff;
 @btn-warning-bg:                 @brand-warning;
-@btn-warning-border:             @btn-warning-bg;
+@btn-warning-border:             darken(@btn-warning-bg, 5%);
 
 @btn-danger-color:               #fff;
 @btn-danger-bg:                  @brand-danger;
-@btn-danger-border:              @btn-danger-bg;
+@btn-danger-border:              darken(@btn-danger-bg, 5%);
 
 @btn-link-disabled-color:        transparent;
 
@@ -193,14 +203,14 @@
 //##
 
 //** `<input>` background color
-@input-bg:                       #fff;
+@input-bg:                       transparent;
 //** `<input disabled>` background color
-@input-bg-disabled:              #eee;
+@input-bg-disabled:              @gray-lighter;
 
 //** Text color for `<input>`s
-@input-color:                    #777;
+@input-color:                    #3b3b3b;
 //** `<input>` border color
-@input-border:                   #eaeaea;
+@input-border:                   #e0e0e0;
 @input-border-focus:             #aeaeae;
 
 // TODO: Rename `@input-border-radius` to `@input-border-radius-base` in v4
@@ -213,13 +223,13 @@
 @input-border-radius-small:      @border-radius-small;
 
 //** Border color for inputs on focus
-@input-border-focus:             #d1d1d1;
+@input-border-focus:             #aeaeae;
 
 //** Placeholder text color
 @input-color-placeholder:        #999;
 
 //** Default `.form-control` height
-@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 4);
+@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
 //** Large `.form-control` height
 @input-height-large:             (ceil(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
 //** Small `.form-control` height
@@ -232,7 +242,7 @@
 @legend-border-color:            #e5e5e5;
 
 //** Background color for textual input addons
-@input-group-addon-bg:           #eaeaea;
+@input-group-addon-bg:           transparent;
 //** Border color for textual input addons
 @input-group-addon-border-color: @input-border;
 
@@ -247,7 +257,7 @@
 //** Background for the dropdown menu.
 @dropdown-bg:                    #fff;
 //** Dropdown menu `border-color`.
-@dropdown-border:                transparent;
+@dropdown-border:                #ECEFF1;
 //** Dropdown menu `border-color` **for IE8**.
 @dropdown-fallback-border:       #ccc;
 //** Divider color for between dropdown items.
@@ -256,9 +266,9 @@
 //** Dropdown link text color.
 @dropdown-link-color:            @gray-dark;
 //** Hover color for dropdown links.
-@dropdown-link-hover-color:      #fff;
+@dropdown-link-hover-color:      darken(@gray-dark, 5%);
 //** Hover background for dropdown links.
-@dropdown-link-hover-bg:         @brand-primary;
+@dropdown-link-hover-bg:         #f5f5f5;
 
 //** Active dropdown menu item text color.
 @dropdown-link-active-color:     @component-active-color;
@@ -377,35 +387,35 @@
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height:       340px;
 
-@navbar-default-bg:                #df3f3f;
-@navbar-default-hover-bg:          rgba(0, 0, 0, 0.05);
-@navbar-default-color:             #fff;
+@navbar-default-bg:                #2090EA;
+@navbar-default-hover-bg:          transparent;
+@navbar-default-color:             rgba(255, 255, 255, 0.6);
 @navbar-default-border:            transparent;
 
 // Navbar links
-@navbar-default-link-color:                @brand-danger;
-@navbar-default-link-hover-color:          #fff;
-@navbar-default-link-hover-bg:             rgba(0, 0, 0, 0.05);
+@navbar-default-link-color:                rgba(255, 255, 255, 0.6);
+@navbar-default-link-hover-color:          @text-color;
+@navbar-default-link-hover-bg:             @navbar-default-link-active-bg;
 @navbar-default-link-active-color:         #fff;
-@navbar-default-link-active-bg:            rgba(0, 0, 0, 0.05);
+@navbar-default-link-active-bg:            rgba(0, 0, 0, 0.07);
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;
 
 // Navbar brand label
-@navbar-default-brand-color:               #fff;
+@navbar-default-brand-color:               @navbar-default-link-color;
 @navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
 @navbar-default-brand-hover-bg:            transparent;
 
 // Navbar toggle
-@navbar-default-toggle-hover-bg:           #ddd;
-@navbar-default-toggle-icon-bar-bg:        #888;
-@navbar-default-toggle-border-color:       #ddd;
+@navbar-default-toggle-hover-bg:           darken(@navbar-default-brand-color, 10%);
+@navbar-default-toggle-icon-bar-bg:        darken(@navbar-default-brand-color, 10%);
+@navbar-default-toggle-border-color:       transparent;
 
 
 //=== Inverted navbar
 // Reset inverted navbar basics
 @navbar-inverse-color:                      lighten(@gray-light, 15%);
-@navbar-inverse-bg:                         #191919;
+@navbar-inverse-bg:                         #222;
 @navbar-inverse-border:                     darken(@navbar-inverse-bg, 10%);
 
 // Inverted navbar links
@@ -433,18 +443,18 @@
 //##
 
 //=== Shared nav styles
-@nav-link-padding:                          18px;
+@nav-link-padding:                          @padding-base-horizontal;
 @nav-link-hover-bg:                         rgba(0,0,0,.1);
 
 @nav-disabled-link-color:                   @gray-light;
 @nav-disabled-link-hover-color:             @gray-light;
 
 //== Tabs
-@nav-tabs-border-color:                     #fff;
+@nav-tabs-border-color:                     #ddd;
 
 @nav-tabs-link-hover-border-color:          @gray-lighter;
 
-@nav-tabs-active-link-hover-bg:             #fff;
+@nav-tabs-active-link-hover-bg:             transparent;
 @nav-tabs-active-link-hover-color:          @gray;
 @nav-tabs-active-link-hover-border-color:   #ddd;
 
@@ -453,8 +463,8 @@
 
 //== Pills
 @nav-pills-border-radius:                   @border-radius-base;
-@nav-pills-active-link-hover-bg:            @component-active-color;
-@nav-pills-active-link-hover-color:         @component-active-bg;
+@nav-pills-active-link-hover-bg:            @component-active-bg;
+@nav-pills-active-link-hover-color:         @component-active-color;
 
 
 //== Pagination
@@ -465,8 +475,8 @@
 @pagination-bg:                        #fff;
 @pagination-border:                    #ddd;
 
-@pagination-hover-color:               @link-color;
-@pagination-hover-bg:                  rgba(214, 214, 214, 0.5);
+@pagination-hover-color:               @link-hover-color;
+@pagination-hover-bg:                  rgba(0,0,0,.1);
 @pagination-hover-border:              #ddd;
 
 @pagination-active-color:              #fff;
@@ -484,7 +494,7 @@
 
 @pager-bg:                             @pagination-bg;
 @pager-border:                         @pagination-border;
-@pager-border-radius:                  15px;
+@pager-border-radius:                  30px;
 
 @pager-hover-bg:                       @pagination-hover-bg;
 
@@ -717,9 +727,9 @@
 //##
 
 @panel-bg:                    #fff;
-@panel-body-padding:          0.5em 1em;
+@panel-body-padding:          @padding-base-horizontal;
 @panel-heading-padding:       @panel-body-padding;
-@panel-footer-padding:        1.5em;
+@panel-footer-padding:        @padding-base-horizontal;
 @panel-border-radius:         @border-radius-base;
 
 //** Border color for elements within panels
@@ -728,7 +738,7 @@
 
 @panel-default-text:          @text-color;
 @panel-default-border:        transparent;
-@panel-default-heading-bg:    #fff;
+@panel-default-heading-bg:    #f7f7f7;
 
 @panel-primary-text:          #fff;
 @panel-primary-border:        @brand-primary;
@@ -804,7 +814,7 @@
 @breadcrumb-padding-vertical:   @padding-base-vertical;
 @breadcrumb-padding-horizontal: @padding-base-horizontal;
 //** Breadcrumb background color
-@breadcrumb-bg:                 transparent;
+@breadcrumb-bg:                 #F2F3F6;
 //** Breadcrumb text color
 @breadcrumb-color:              @brand-primary;
 //** Text color of current page in the breadcrumb
