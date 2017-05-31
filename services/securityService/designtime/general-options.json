@@ -1,5 +1,5 @@
 {
-  "enforceSecurity" : true,
+  "enforceSecurity" : false,
   "loginConfig" : {
     "type" : "PAGE",
     "pageName" : "Login",
