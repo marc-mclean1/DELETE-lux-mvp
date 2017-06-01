@@ -191,17 +191,24 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
                 }
             });
             console.log(entityParams, conversationSuccess);
+
+            // TODO remove comments
+            /*
             if (conversationSuccess) {
                 $scope.Variables.invokeDiscoveryServiceWFilter.setInput('filter', entityParams.length ? (entityParams.join(',')) : "");
                 $scope.Variables.invokeDiscoveryServiceWFilter.invoke();
             }
+            */
         }
 
+        // TODO remove comments
+        /*
         if (data.input.text && !conversationSuccess) {
             $scope.requestBodyNLU.text = data.input.text;
             $scope.Variables.invokeNLUService.setInput('RequestBody', $scope.requestBodyNLU);
             $scope.Variables.invokeNLUService.invoke();
         }
+        */
 
     };
 

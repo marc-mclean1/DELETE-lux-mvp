@@ -5,10 +5,10 @@
         backgroundsize="400px,400px" backgroundrepeat="no-repeat" backgroundposition="center">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn1">
-                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot1" width="100%" height="650px" on-watsonresponse="watsonChatbot1Watsonresponse($scope)"></wm-prefab>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn1">
+                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot1" width="100%" height="650px" on-watsonresponse="watsonChatbot1Watsonresponse($scope)" class="input"></wm-prefab>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="9" name="gridcolumn2">
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn2">
                         <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-4 lg-4" class="list-card" dataset="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results" navigation="Pager" name="livelist3">
                             <wm-listtemplate layout="media" name="listtemplate3">
                                 <wm-card name="Picture" title="" picturesource="bind:getProductImageUrl(item)">
