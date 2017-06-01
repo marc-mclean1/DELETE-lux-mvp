@@ -2,12 +2,18 @@
   "name" : "admin",
   "description" : null,
   "roleConfig" : {
-    "landingPage" : "Main"
+    "landingPage" : "HelpWithChat"
   }
 }, {
   "name" : "user",
   "description" : null,
   "roleConfig" : {
-    "landingPage" : "Main"
+    "landingPage" : "HelpWithChat"
+  }
+}, {
+  "name" : "manager",
+  "description" : null,
+  "roleConfig" : {
+    "landingPage" : "HelpWithChat"
   }
 } ]

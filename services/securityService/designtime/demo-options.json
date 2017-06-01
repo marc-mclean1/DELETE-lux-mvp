@@ -7,5 +7,13 @@
     "userid" : "admin",
     "password" : "admin",
     "roles" : [ "admin" ]
+  }, {
+    "userid" : "employee",
+    "password" : "employee",
+    "roles" : [ "user" ]
+  }, {
+    "userid" : "manager",
+    "password" : "manager",
+    "roles" : [ "manager" ]
   } ]
 }

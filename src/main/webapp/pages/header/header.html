@@ -5,7 +5,10 @@
                 <wm-picture picturesource="resources/images/imagelists/logo.png" name="AppLogo" margin="unset unset .5em unset" height="30"></wm-picture>
                 <wm-label caption="" class="application-name" name="AppName" fontsize="2.5" fontunit="em" padding=".15em unset unset .15em"></wm-label>
             </wm-gridcolumn>
-            <wm-gridcolumn name="headerright" horizontalalign="right" verticalalign="middle" columnwidth="5" padding="1em 1em unset unset"></wm-gridcolumn>
+            <wm-gridcolumn name="headerright" horizontalalign="right" verticalalign="middle" columnwidth="5" padding="1em 1em unset unset">
+                <wm-anchor margin="unset 0.5em" name="anchor2" caption="bind:Variables.loggedInUser.dataSet.name" iconclass="wi wi-user"></wm-anchor>
+                <wm-anchor margin="unset 0.5em" name="anchor1" caption="Logout" iconclass="wi wi-sign-out" on-click="Variables.logoutVariable.invoke()"></wm-anchor>
+            </wm-gridcolumn>
         </wm-gridrow>
     </wm-layoutgrid>
 </wm-partial>

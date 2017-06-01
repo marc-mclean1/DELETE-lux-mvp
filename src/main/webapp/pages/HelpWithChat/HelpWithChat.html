@@ -1,16 +1,25 @@
 <wm-page data-ng-controller="HelpWithChatPageController" pagetitle="Help With Chat" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
     <wm-content name="content1">
         <wm-page-content columnwidth="12" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn1">
-                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot2" height="650px"></wm-prefab>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn1">
+                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot2" height="650px" on-watsonresponse="watsonChatbot2Watsonresponse($scope)"></wm-prefab>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="8" name="gridcolumn2">
-                        <wm-iframe name="iframe1" width="100%" height="99vh" iframesrc="bind:&quot;resources/files/&quot;+(Widgets.watsonChatbot2.message==&quot;green&quot;?&quot;1&quot;:&quot;gre_research_validity_data&quot;)+&quot;.pdf#page=&quot;+(Widgets.watsonChatbot2.message==&quot;green&quot;?2:1)"></wm-iframe>
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn2">
+                        <wm-accordion name="accordion1">
+                            <wm-accordionpane name="accordionpane1" title="Documents">
+                                <wm-iframe name="iframe1" width="100%" height="75vh" iframesrc="{{sourceURL}}"></wm-iframe>
+                            </wm-accordionpane>
+                            <wm-accordionpane name="accordionpane4" title="Links" accessroles="manager">
+                                <wm-anchor margin="unset 0.5em" name="anchor1" caption="https://www.wavemakeronline.com/run-anurag/ConversationNDiscovery/resources/files/Reviewing_My_Pay_Stub_Job_Aid_CANADA.pdf" hyperlink="https://www.wavemakeronline.com/run-anurag/ConversationNDiscovery/resources/files/Reviewing_My_Pay_Stub_Job_Aid_CANADA.pdf"></wm-anchor>
+                            </wm-accordionpane>
+                        </wm-accordion>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
 </wm-page>

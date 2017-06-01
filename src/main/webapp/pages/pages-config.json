@@ -15,6 +15,10 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "Test",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
   "name" : "TestPage",
   "type" : "PAGE",
   "params" : [ ]
