@@ -37,6 +37,7 @@ Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils
 
     $scope.sendBtnClick = function($event, $isolateScope) {
         $scope.message = $scope.Widgets.messageForm.formWidgets.message.datavalue;
+        $scope.Widgets.messageForm.reset();
 
         //if there is empty message return back do not engage
         if (!$scope.message) {
