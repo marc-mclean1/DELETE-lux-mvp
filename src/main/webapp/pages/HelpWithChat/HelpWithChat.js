@@ -20,16 +20,27 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
 
         /* check for a message from chat */
         if (Array.isArray(output_text)) {
-            _.forEach(output_text, function(text) {
+            _.forEach(output_text, function(text, index) {
 
-                if (_.includes(text, ".pdf")) {
-                    $scope.sourceURL = "resources/files/" + text.substring(0, text.indexOf(".pdf") + 4);
+                if (_.includes(text, ".pdf]")) {
+                    // pull out the entire PDF
+                    var pos = text.indexOf(".pdf]");
+                    for (var i = pos; i >= 0; i--) {
+                        if (text[i] == "[") {
+                            var pdf = text.substring(i + 1, pos + 4);
+                            console.log("pos = " + pos);
+                            console.log("PDF = " + pdf);
+                            // only handle if an open bracket is found, otherwise, we do nothing.
+                            $scope.sourceURL = "resources/files/" + text.substring(i + 1, pos + 4);
+                            data.output.text[index] = text.replace("[" + pdf + "]", pdf);
+                            break;
+                        }
+                    }
                 }
             });
         } else {
-            //handle the string
+            //handle the string - this should never happen.
         }
-
     };
 
 }]);
