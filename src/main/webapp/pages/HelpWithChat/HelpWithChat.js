@@ -31,7 +31,7 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
                             console.log("pos = " + pos);
                             console.log("PDF = " + pdf);
                             // only handle if an open bracket is found, otherwise, we do nothing.
-                            $scope.sourceURL = "resources/files/" + text.substring(i + 1, pos + 4);
+                            $scope.sourceURL = "resources/files/" + pdf.replace(/ /g, '_');
                             data.output.text[index] = text.replace("[" + pdf + "]", pdf);
                             break;
                         }
