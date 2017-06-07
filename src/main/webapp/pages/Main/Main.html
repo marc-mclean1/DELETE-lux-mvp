@@ -1,32 +1,25 @@
-<wm-page data-ng-controller="MainPageController" name="mainpage" pagetitle="Main">
-    <wm-header content="header" name="header" height="auto"></wm-header>
-    <wm-content name="content">
-        <wm-page-content columnwidth="12" name="mainContent" padding="0px 0px unset 0px" backgroundimage="bind:(!Variables.invokeNLUService.dataSet.entities.length &amp;&amp; !Variables.invokeNLUService.dataSet.keywords.length &amp;&amp; !Variables.invokeDiscoveryServiceWFilter.dataSet.matching_results) ? 'resources/images/imagelists/IBM_Watson_logo.png' : 'xyz'"
-        backgroundsize="400px,400px" backgroundrepeat="no-repeat" backgroundposition="center">
+<wm-page data-ng-controller="MainPageController" pagetitle="Main" name="Main">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1">
+        <wm-page-content columnwidth="12" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn1">
-                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot1" width="100%" height="650px" on-watsonresponse="watsonChatbot1Watsonresponse($scope)" class="input"></wm-prefab>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn1" height="650px">
+                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot2" height="100%" on-watsonresponse="watsonChatbot2Watsonresponse($scope)"></wm-prefab>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="8" name="gridcolumn2">
-                        <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-4 lg-4" class="list-card" dataset="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results" navigation="Pager" name="livelist3">
-                            <wm-listtemplate layout="media" name="listtemplate3">
-                                <wm-card name="Picture" title="" picturesource="bind:getProductImageUrl(item)">
-                                    <wm-card-content padding="1.5em unset unset unset" name="card_content3">
-                                        <wm-button class="btn-fab btn-warning pull-right btn-lg" caption="" type="button" name="button2" iconclass="wi wi-cart" margin="-3.5em 0.5em unset unset"></wm-button>
-                                        <wm-label name="Name" class="p text-muted" caption="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i]['display-name']"></wm-label>
-                                        <wm-label class="p text-muted" caption="bind:Variables.invokeDiscoveryServiceWFilter.dataSet.results[$i]['long-description']" name="label6" show="false"></wm-label>
-                                    </wm-card-content>
-                                    <wm-card-footer horizontalalign="center" name="card_footer3">
-                                        <wm-anchor caption="VIEW ALL SPECIFICATIONS" class="btn btn-transparent" name="anchor3"></wm-anchor>
-                                    </wm-card-footer>
-                                </wm-card>
-                            </wm-listtemplate>
-                        </wm-livelist>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn2" height="650px">
+                        <wm-accordion name="accordion1" closeothers="true" height="650px">
+                            <wm-accordionpane name="accordionpane1" title="Help" padding="0px unset" height="100%">
+                                <wm-iframe name="iframe1" width="100%" height="100%" iframesrc="{{sourceURL}}"></wm-iframe>
+                            </wm-accordionpane>
+                            <wm-accordionpane name="accordionpane4" title="Additional Links" accessroles="manager" height="100%">
+                                <wm-anchor margin="unset 0.5em" name="anchor1" caption="Reviewing_My_Pay_Stub_Job_Aid_CANADA.pdf" hyperlink="resources/files/Reviewing_My_Pay_Stub_Job_Aid_CANADA.pdf"></wm-anchor>
+                            </wm-accordionpane>
+                        </wm-accordion>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
-    <wm-footer name="footer" content="footer"></wm-footer>
+    <wm-footer content="footer" name="footer1"></wm-footer>
 </wm-page>
