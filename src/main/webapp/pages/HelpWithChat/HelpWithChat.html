@@ -8,9 +8,9 @@
                         <wm-prefab prefabname="watsonChatbot" name="watsonChatbot2" height="100%" on-watsonresponse="watsonChatbot2Watsonresponse($scope)"></wm-prefab>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn2" height="650px">
-                        <wm-accordion name="accordion1" closeothers="true" height="100%">
+                        <wm-accordion name="accordion1" closeothers="true" height="100%" class="help-accordion">
                             <wm-accordionpane name="accordionpane1" title="Help" padding="0px unset">
-                                <wm-iframe name="iframe1" width="100%" height="60vh" iframesrc="{{sourceURL}}"></wm-iframe>
+                                <wm-iframe name="iframe1" width="100%" height="100%" iframesrc="{{sourceURL}}"></wm-iframe>
                             </wm-accordionpane>
                             <wm-accordionpane name="accordionpane4" title="Additional Links" accessroles="manager">
                                 <wm-anchor margin="unset 0.5em" name="anchor1" caption="Reviewing_My_Pay_Stub_Job_Aid_CANADA.pdf" hyperlink="resources/files/Reviewing_My_Pay_Stub_Job_Aid_CANADA.pdf"></wm-anchor>

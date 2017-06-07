@@ -1,3 +1,8 @@
 .wm-app .panel-heading {
     padding: 5px;
 }
+
+.help-accordion .panel-body{
+    height: 567px;
+    padding: 0;
+}
