@@ -3,16 +3,16 @@
     <wm-content name="content1">
         <wm-page-content columnwidth="12" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow1">
+                <wm-gridrow name="gridrow1" class="mm-gridrow">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn1" height="650px">
-                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot2" height="100%" on-watsonresponse="watsonChatbot2Watsonresponse($scope)"></wm-prefab>
+                        <wm-prefab id="watsonChatbot" prefabname="watsonChatbot" name="watsonChatbot2" height="100%" on-watsonresponse="watsonChatbot2Watsonresponse($scope)"></wm-prefab>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn2" height="650px">
                         <wm-accordion name="accordion1" closeothers="true" height="100%" class="help-accordion">
                             <wm-accordionpane name="accordionpane1" title="Help" padding="0px unset">
                                 <wm-iframe name="iframe1" width="100%" height="100%" iframesrc="{{sourceURL}}" class="doc-frame"></wm-iframe>
                             </wm-accordionpane>
-                            <wm-accordionpane name="accordionpane4" title="Additional Links" accessroles="manager">
+                            <wm-accordionpane name="accordionpane4" title="Additional Links" accessroles="Everyone">
                                 <ul>
                                     <li>
                                         <wm-anchor margin="unset 0.5em" name="anchor1" caption="Interpreter Instructions" hyperlink="resources/files/HR_Call_Center_OneNote_Reference_Guide_-_Full_Notebook_in_PDF_form.pdf#page=34"></wm-anchor>

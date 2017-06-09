@@ -1,0 +1,24 @@
+<wm-page data-ng-controller="MMPageController" pagetitle="Mm" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-content name="content1" class="mm-content">
+        <wm-page-content columnwidth="12" name="page_content1" class="mm-page-content">
+            <wm-layoutgrid name="layoutgrid1" height="100%" class="mm-layoutgrid">
+                <wm-gridrow name="gridrow1" class="mm-gridrow">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn1">
+                        <wm-prefab prefabname="watsonChatbot" name="watsonChatbot2" height="100%" on-watsonresponse="watsonChatbot2Watsonresponse($scope)"></wm-prefab>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn2">
+                        <wm-accordion name="accordion1" height="100%">
+                            <wm-accordionpane name="accordionpane1" class="mm-accordionpane">
+                                <wm-iframe name="iframe1" width="100%" iframesrc="resources/files/Reviewing_My_Pay_Stub_Job_Aid.pdf" class="mm-iframe"></wm-iframe>
+                            </wm-accordionpane>
+                            <wm-accordionpane name="accordionpane2"></wm-accordionpane>
+                            <wm-accordionpane name="accordionpane3"></wm-accordionpane>
+                        </wm-accordion>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+</wm-page>

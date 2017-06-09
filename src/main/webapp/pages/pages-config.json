@@ -11,6 +11,10 @@
   "type" : "PAGE",
   "params" : [ ]
 }, {
+  "name" : "MM",
+  "type" : "PAGE",
+  "params" : [ ]
+}, {
   "name" : "Main",
   "type" : "PAGE",
   "params" : [ ]

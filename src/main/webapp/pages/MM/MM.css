@@ -1,0 +1,39 @@
+.mm-content {
+/*    min-height:250px; */
+}
+
+.mm-page-content {
+/*    min-height:250px; */
+}
+
+.mm-layoutgrid {
+/*    min-height:250px; */
+}
+
+.mm-gridrow {
+/*    min-height:550px; */
+/*    height:550px; */
+    height:calc(100%);
+}
+
+.mm-accordion {
+/*    min-height:550px; */
+/*    height:550px; */
+/*    height:calc(100%); */
+}
+
+.mm-accordionpane {
+/*    min-height:550px; */
+/*    height:550px; */
+/*    height:calc(100%); */
+}
+
+.app-accordion-panel .panel-heading {
+/*    min-height:550px; */
+/*    height:550px; */
+/*    height:calc(100%); */
+    padding: 10px 0px 0px 10px;
+}
+.mm-iframe {
+    min-height:500px;
+}
