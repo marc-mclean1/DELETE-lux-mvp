@@ -1,1 +1,28 @@
-{ }
+{
+  "staticVariable1" : {
+    "_id" : "wm-staticVariable1-wm.Variable-1497029622918",
+    "name" : "staticVariable1",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "staticVariable2" : {
+    "_id" : "wm-staticVariable2-wm.Variable-1497030263523",
+    "name" : "staticVariable2",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : true
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  }
+}

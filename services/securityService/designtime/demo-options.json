@@ -15,5 +15,9 @@
     "userid" : "manager",
     "password" : "manager",
     "roles" : [ "manager" ]
+  }, {
+    "userid" : "trainer",
+    "password" : "trainer",
+    "roles" : [ "trainer" ]
   } ]
 }

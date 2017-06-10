@@ -186,6 +186,11 @@
                         <property name="landingPage" value="HelpWithChat"/>
                     </bean>
                 </entry>
+                <entry key="trainer">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="HelpWithChat"/>
+                    </bean>
+                </entry>
             </map>
         </property>
     </bean>
@@ -256,6 +261,15 @@
                     <constructor-arg>
                         <list>
                             <value>ROLE_manager</value>
+                        </list>
+                    </constructor-arg>
+                </bean>
+                <bean class="com.wavemaker.runtime.security.WMUser">
+                    <constructor-arg value="trainer"/>
+                    <constructor-arg value="trainer"/>
+                    <constructor-arg>
+                        <list>
+                            <value>ROLE_trainer</value>
                         </list>
                     </constructor-arg>
                 </bean>

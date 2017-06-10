@@ -16,4 +16,10 @@
   "roleConfig" : {
     "landingPage" : "HelpWithChat"
   }
+}, {
+  "name" : "trainer",
+  "description" : null,
+  "roleConfig" : {
+    "landingPage" : "HelpWithChat"
+  }
 } ]
