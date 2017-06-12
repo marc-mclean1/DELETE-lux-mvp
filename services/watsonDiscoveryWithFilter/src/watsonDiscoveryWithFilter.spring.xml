@@ -2,7 +2,7 @@
 <beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd" xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <bean class="com.wavemaker.runtime.rest.model.RestServiceInfoBean" id="watsonDiscoveryWithFilterServiceInfo">
         <property name="serviceName" value="watsonDiscoveryWithFilter"/>
-        <property name="url" value="/watsonDiscoveryWithFilter/invoke/api/v1/environments/39f3a71c-b6bb-4c65-b494-4ba9266c1458/collections/c5d3a3d6-58cd-413d-ba76-9c3089859b2d/query"/>
+        <property name="url" value="/watsonDiscoveryWithFilter/invoke/api/v1/environments/{environment_id}/collections/{collection_id}/query"/>
         <property name="httpMethod" value="GET"/>
     </bean>
 </beans>

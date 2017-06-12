@@ -3,7 +3,7 @@
   "info" : {
     "version" : "2.0",
     "x-WM-SERVICE_TYPE" : "RestService",
-    "x-WM-API_ID" : "129b215e-4a59-44b0-a1e4-b38d16d010b3",
+    "x-WM-API_ID" : "cbdb6974-937b-4cc1-a8e2-24001a773149",
     "x-WM-USE_PROXY_FOR_WEB" : true,
     "x-WM-SERVICE_ID" : "watsonplatform",
     "x-WM-USE_PROXY_FOR_MOBILE" : true
@@ -16,7 +16,7 @@
   } ],
   "schemes" : [ "https" ],
   "paths" : {
-    "/watsonDiscoveryWithFilter/invoke/api/v1/environments/39f3a71c-b6bb-4c65-b494-4ba9266c1458/collections/c5d3a3d6-58cd-413d-ba76-9c3089859b2d/query" : {
+    "/watsonDiscoveryWithFilter/invoke/api/v1/environments/{environment_id}/collections/{collection_id}/query" : {
       "get" : {
         "tags" : [ "RestServiceVirtualController" ],
         "operationId" : "watsonDiscoveryWithFilter_RestServiceVirtualController-invoke",
@@ -70,6 +70,28 @@
           "type" : "string",
           "format" : "string",
           "x-WM-EDITABLE" : false
+        }, {
+          "name" : "environment_id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "collection_id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "natural_language_query",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "string"
+        }, {
+          "name" : "passages",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "boolean"
         } ],
         "responses" : {
           "200" : {
@@ -85,10 +107,10 @@
         "x-WM-METHOD_NAME" : "invoke",
         "x-WM-ACCESS_SPECIFIER" : "APP_ONLY"
       },
-      "x-WM-BASE_PATH" : "/watsonDiscoveryWithFilter/invoke/api/v1/environments/39f3a71c-b6bb-4c65-b494-4ba9266c1458/collections/c5d3a3d6-58cd-413d-ba76-9c3089859b2d/query",
+      "x-WM-BASE_PATH" : "/watsonDiscoveryWithFilter/invoke/api/v1/environments/{environment_id}/collections/{collection_id}/query",
       "x-WM-TAG" : "RestServiceVirtualController",
       "x-WM-RELATIVE_PATH" : "",
-      "x-WM-COMPLETE_PATH" : "${rest.watsonDiscoveryWithFilter.scheme}://${rest.watsonDiscoveryWithFilter.host}${rest.watsonDiscoveryWithFilter.basepath}/api/v1/environments/39f3a71c-b6bb-4c65-b494-4ba9266c1458/collections/c5d3a3d6-58cd-413d-ba76-9c3089859b2d/query"
+      "x-WM-COMPLETE_PATH" : "${rest.watsonDiscoveryWithFilter.scheme}://${rest.watsonDiscoveryWithFilter.host}${rest.watsonDiscoveryWithFilter.basepath}/api/v1/environments/{environment_id}/collections/{collection_id}/query"
     }
   },
   "securityDefinitions" : {
@@ -98,20 +120,476 @@
   },
   "definitions" : {
     "RootResponse" : {
-      "required" : [ "code", "description", "error" ],
+      "required" : [ "matching_results", "passages", "results" ],
       "properties" : {
-        "error" : {
-          "type" : "string"
+        "passages" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/passagesEntryItem"
+          },
+          "x-WM-IS_LIST" : true
         },
-        "description" : {
-          "type" : "string"
+        "results" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/resultsEntryItem"
+          },
+          "x-WM-IS_LIST" : true
         },
-        "code" : {
+        "matching_results" : {
           "type" : "integer",
           "format" : "int32"
         }
       },
       "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "extracted_metadata" : {
+      "required" : [ "file_type", "filename", "sha1" ],
+      "properties" : {
+        "filename" : {
+          "type" : "string"
+        },
+        "sha1" : {
+          "type" : "string"
+        },
+        "file_type" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.extracted_metadata",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "entitiesEntryItem" : {
+      "required" : [ "count", "relevance", "sentiment", "text", "type" ],
+      "properties" : {
+        "sentiment" : {
+          "$ref" : "#/definitions/sentiment"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "count" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "relevance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.entitiesEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "java.lang.Object" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.java.lang.Object",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "subject" : {
+      "required" : [ "entities", "keywords", "sentiment", "text" ],
+      "properties" : {
+        "sentiment" : {
+          "$ref" : "#/definitions/sentiment"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "keywords" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/keywordsEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "entities" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/entitiesEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.subject",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "answer_unitsEntryItem" : {
+      "required" : [ "content", "direction", "id", "parent_id", "title", "type" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "content" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/contentEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "direction" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "parent_id" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.answer_unitsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "conceptsEntryItem" : {
+      "required" : [ "dbpedia", "freebase", "opencyc", "relevance", "text", "website", "yago" ],
+      "properties" : {
+        "text" : {
+          "type" : "string"
+        },
+        "website" : {
+          "type" : "string"
+        },
+        "yago" : {
+          "type" : "string"
+        },
+        "relevance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "dbpedia" : {
+          "type" : "string"
+        },
+        "freebase" : {
+          "type" : "string"
+        },
+        "opencyc" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.conceptsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "passagesEntryItem" : {
+      "required" : [ "document_id", "passage_score", "passage_text" ],
+      "properties" : {
+        "passage_text" : {
+          "type" : "string"
+        },
+        "document_id" : {
+          "type" : "string"
+        },
+        "passage_score" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.passagesEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "object" : {
+      "required" : [ "entities", "keywords", "sentiment", "sentimentFromSubject", "text" ],
+      "properties" : {
+        "sentiment" : {
+          "$ref" : "#/definitions/sentiment"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "keywords" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/keywordsEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "entities" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/entitiesEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "sentimentFromSubject" : {
+          "$ref" : "#/definitions/sentimentFromSubject"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.object",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "relationsEntryItem" : {
+      "required" : [ "action", "object", "sentence", "subject" ],
+      "properties" : {
+        "subject" : {
+          "$ref" : "#/definitions/subject"
+        },
+        "action" : {
+          "$ref" : "#/definitions/action"
+        },
+        "sentence" : {
+          "type" : "string"
+        },
+        "object" : {
+          "$ref" : "#/definitions/object"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.relationsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "enriched_text" : {
+      "required" : [ "concepts", "docSentiment", "entities", "keywords", "language", "relations", "status", "taxonomy", "warningMessage" ],
+      "properties" : {
+        "keywords" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/keywordsEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "docSentiment" : {
+          "$ref" : "#/definitions/docSentiment"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "relations" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "taxonomy" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/taxonomyEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "language" : {
+          "type" : "string"
+        },
+        "entities" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "concepts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "warningMessage" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.enriched_text",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "sentiment" : {
+      "required" : [ "mixed", "score", "type" ],
+      "properties" : {
+        "score" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "mixed" : {
+          "type" : "boolean"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.sentiment",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "taxonomyEntryItem" : {
+      "required" : [ "confident", "label", "score" ],
+      "properties" : {
+        "confident" : {
+          "type" : "boolean"
+        },
+        "score" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "label" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.taxonomyEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "verb" : {
+      "required" : [ "tense", "text" ],
+      "properties" : {
+        "text" : {
+          "type" : "string"
+        },
+        "tense" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.verb",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "docSentiment" : {
+      "required" : [ "mixed", "score", "type" ],
+      "properties" : {
+        "score" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "mixed" : {
+          "type" : "boolean"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.docSentiment",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "resultsEntryItem" : {
+      "required" : [ "answer_units", "enriched_text", "extracted_metadata", "id", "media_type_detected", "metadata", "original_page", "original_pdf", "original_url", "score", "single_pdf", "source_document_id", "text", "timestamp" ],
+      "properties" : {
+        "media_type_detected" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "enriched_text" : {
+          "$ref" : "#/definitions/enriched_text"
+        },
+        "extracted_metadata" : {
+          "$ref" : "#/definitions/extracted_metadata"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "original_url" : {
+          "type" : "string"
+        },
+        "original_pdf" : {
+          "type" : "string"
+        },
+        "source_document_id" : {
+          "type" : "string"
+        },
+        "answer_units" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/answer_unitsEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "score" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "original_page" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "single_pdf" : {
+          "type" : "string"
+        },
+        "metadata" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/metadataEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.resultsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "action" : {
+      "required" : [ "lemmatized", "text", "verb" ],
+      "properties" : {
+        "text" : {
+          "type" : "string"
+        },
+        "verb" : {
+          "$ref" : "#/definitions/verb"
+        },
+        "lemmatized" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.action",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "metadataEntryItem" : {
+      "required" : [ "content", "name" ],
+      "properties" : {
+        "content" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.metadataEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "contentEntryItem" : {
+      "required" : [ "media_type", "text" ],
+      "properties" : {
+        "media_type" : {
+          "type" : "string"
+        },
+        "text" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.contentEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "sentimentFromSubject" : {
+      "required" : [ "mixed", "score", "type" ],
+      "properties" : {
+        "score" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "mixed" : {
+          "type" : "boolean"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.sentimentFromSubject",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "keywordsEntryItem" : {
+      "required" : [ "relevance", "sentiment", "text" ],
+      "properties" : {
+        "sentiment" : {
+          "$ref" : "#/definitions/sentiment"
+        },
+        "text" : {
+          "type" : "string"
+        },
+        "relevance" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonDiscoveryWithFilter.keywordsEntryItem",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     }
   }

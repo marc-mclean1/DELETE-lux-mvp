@@ -13,7 +13,7 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
          * '$scope.Widgets.username.datavalue'
          */
 
-
+        console.log($scope.Widgets);
 
 
     };
@@ -24,12 +24,26 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
         console.log("user = " + JSON.stringify($scope.Variables.loggedInUser.getData()));
         console.log("conversation = " + JSON.stringify(data));
 
-        // If this is the first time we are entering this conversation, set context variables.
+        // Check input and possibly add to scope variable.
+        // TODO: this method should be placed on the outbound side - i.e., the initial call to Watson Conversation.
+        // This would allow us to perform the NLU query in parallel to the conversation analysis.t6ttft66t5556tt65656t
         if (data.context.system.dialog_turn_counter == 1) {
             initializeConversationContext(data);
+        } else {
+            // For anything but the first blank input, capture the user input into an array.
+            $scope.Variables.staticVariable3.addItem({
+                dataValue: data.input.text
+            });
         }
 
-        parseDataForPDF(data);
+        if (data.input.text == "var3") {
+            console.log("staticVariable3: ", $scope.Variables.staticVariable3.getData());
+        }
+
+        sendInputToNLU(data.input.text);
+
+        var hasPDF = parseDataForPDF(data);
+
 
 
     }; // END $scope.watsonChatbot2Watsonresponse = function($isolateScope) {
@@ -43,8 +57,86 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
     }
 
 
+
+    // request body for NLU service, update text prior to sending.
+    $scope.requestBodyNLU = {
+        "text": "",
+        "features": {
+            "entities": {
+                "emotion": false,
+                "sentiment": false,
+                "limit": 5
+            },
+            "keywords": {
+                "emotion": false,
+                "sentiment": false,
+                "limit": 5
+            },
+            "concepts": {
+                "limit": 5
+            },
+            "semantic_roles": {
+                "entities": true,
+                "keywords": true,
+                "limit": 5
+            },
+            "categories": {},
+            "relations": {},
+            "sentiment": {}
+        }
+    };
+    // called in order to send input to NLU... 
+    function sendInputToNLU(inputText) {
+        console.log("User Input ==> " + inputText);
+        if (inputText) {
+            console.log($scope.requestBodyNLU);
+            $scope.requestBodyNLU.text = inputText;
+            $scope.Variables.invokeNLUService.setInput('RequestBody', $scope.requestBodyNLU);
+            $scope.Variables.invokeNLUService.invoke();
+        }
+    };
+    // This does not seem to get called.  Not sure why.
+    $scope.invokeNLUServiceOnResult = function(variable, data) {
+        console.log("invokeNLUServiceOnResult:", variable, data);
+    };
+    // This gets called on error condition (keeps wm popup from automatically displaying)
+    $scope.invokeNLUServiceOnError = function(variable, data) {
+        console.log("invokeNLUServiceOnError:", variable, data);
+    };
+    // "onSuccess": "invokeNLUServiceonSuccess($event, $scope)",
+    $scope.invokeNLUServiceOnSuccess = function(variable, data) {
+        //needed to empty the datavalue as the widget has a minor bug
+        console.log("invokeNLUServiceOnSuccess:", variable, data);
+        // $scope.Widgets.entityCheckbox.datavalue = [];
+        // $scope.Widgets.keywordCheckbox.datavalue = [];
+        // $scope.Widgets.entity_ConversationCheckbox.datavalue = [];
+    };
+
+
+
+
+
+    // request body for DISCOVERY service, update prior to sending.
+    // This gets called on error condition (keeps wm popup from automatically displaying)
+    $scope.invokeDiscoveryServiceOnError = function(variable, data) {
+        console.log("invokeDiscoveryServiceOnError:", variable, data);
+    };
+    // "onSuccess": "invokeNLUServiceonSuccess($event, $scope)",
+    $scope.invokeDiscoveryServiceOnSuccess = function(variable, data) {
+        //needed to empty the datavalue as the widget has a minor bug
+        console.log("invokeDiscoveryServiceOnSuccess:", variable, data);
+        // $scope.Widgets.entityCheckbox.datavalue = [];
+        // $scope.Widgets.keywordCheckbox.datavalue = [];
+        // $scope.Widgets.entity_ConversationCheckbox.datavalue = [];
+    };
+
+
+
+
+
     // Check watson output for text of the form [test.pdf][page#] and handle accordingly.
     function parseDataForPDF(data) {
+        var ret = false;
         var output_text = _.get(data, 'output.text');
         /* check for a message from chat, last entry first */
         if (Array.isArray(output_text)) {
@@ -56,6 +148,7 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
                     var pos = text.lastIndexOf(".pdf]");
                     for (var i = pos; i >= 0; i--) {
                         if (text[i] == "[") {
+                            ret = true;
                             if (i !== 0 && text[i - 1] == "-") {
                                 boolClearPDF = true;
                             }
@@ -96,6 +189,7 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
         } else {
             //handle the string - this should never happen.
         }
+        return ret;
     }
 
 }]); // END Application.$controller

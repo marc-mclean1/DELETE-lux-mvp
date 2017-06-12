@@ -1,31 +1,31 @@
 {
   "endpointAddress" : "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze",
   "method" : "POST",
-  "requestBody" : "{\n        \"text\": \"I need a red volvo bus\",\n        \"features\": {\n            \"entities\": {\n                \"emotion\": true,\n                \"sentiment\": true,\n                \"limit\": 2\n            },\n            \"keywords\": {\n                \"emotion\": true,\n                \"sentiment\": true,\n                \"limit\": 2\n            },\n            \"categories\": {\n                \"emotion\": true,\n                \"sentiment\": true,\n                \"limit\": 2\n            }\n        }\n    }",
+  "requestBody" : "{\n  \"text\": \"manager\",\n  \"text\": \"no\",\n  \"text\": \"intermittent leave\",\n  \"text\": \"how do i call an interpreter on my mobile phone\",\n  \"text\": \"i don't speak italian\",\n  \"text\": \"i don't speak spanish\",\n  \"text\": \"how do i connect to an interpreter\",\n  \"features\": {\n    \"entities\": {\n      \"emotion\": false,\n      \"sentiment\": false,\n      \"limit\": 5\n    },\n    \"keywords\": {\n      \"emotion\": false,\n      \"sentiment\": false,\n      \"limit\": 5\n    },\n    \"concepts\": {\n      \"limit\": 5\n    },\n    \"semantic_roles\": {\n      \"entities\": true,\n      \"keywords\": true,\n      \"limit\": 5\n    },\n    \"categories\": {},\n    \"relations\": {},\n    \"sentiment\": {}\n  }\n}",
   "headers" : {
-    "Authorization" : [ "Basic ZWU3N2QyMWItN2ViZC00YmFjLTk4ZGMtYjBiNjU1N2RiOGI2OmNRMzR4aDBlbkFjRw==" ]
+    "Authorization" : [ "Basic Y2NhMjA1ODEtZmFiNy00ZjIzLTgzY2MtODk1OGY0MjQzY2Y5OjVmRzQ0Z2ZSY2xnSw==" ]
   },
   "queryParams" : {
     "version" : "2017-02-27"
   },
   "sampleHttpResponseDetails" : {
-    "responseBody" : "{\"keywords\":[{\"text\":\"red volvo bus\",\"sentiment\":{\"score\":-0.446483},\"relevance\":0.96614,\"emotion\":{\"sadness\":0.163693,\"joy\":0.009386,\"fear\":0.132246,\"disgust\":0.341902,\"anger\":0.495141}}],\"entities\":[{\"type\":\"Company\",\"text\":\"volvo\",\"sentiment\":{\"score\":-0.446483},\"relevance\":0.33,\"emotion\":{\"sadness\":0.163693,\"joy\":0.009386,\"fear\":0.132246,\"disgust\":0.341902,\"anger\":0.495141},\"disambiguation\":{\"subtype\":[\"AwardWinner\"],\"name\":\"Volvo\",\"dbpedia_resource\":\"http://dbpedia.org/resource/Volvo\"},\"count\":1}],\"categories\":[{\"score\":0.988385,\"label\":\"/automotive and vehicles/vehicle brands/volvo\"},{\"score\":0.142073,\"label\":\"/travel/transports/public transport\"},{\"score\":0.0301219,\"label\":\"/automotive and vehicles/cars\"}],\"language\":\"en\"}",
+    "responseBody" : "{\"error\":\"not enough text for language id\",\"code\":422}",
     "convertedResponse" : null,
-    "statusCode" : 200,
+    "statusCode" : 422,
     "headers" : {
-      "X-Backside-Transport" : [ "OK OK" ],
+      "X-Backside-Transport" : [ "FAIL FAIL" ],
       "Connection" : [ "Keep-Alive" ],
       "Transfer-Encoding" : [ "chunked" ],
-      "date" : [ "Tue, 02 May 2017 17:52:41 GMT" ],
-      "x-request-id" : [ "jgboaued1t4ft6rougfvkff1f4o5upp2" ],
+      "date" : [ "Mon, 12 Jun 2017 03:22:28 GMT" ],
+      "x-request-id" : [ "j40agf8ta81q6njg5nuth43a545k4vr3" ],
       "cache-control" : [ "max-age=0, private, must-revalidate" ],
       "Content-Type" : [ "application/json;charset=utf-8" ],
       "Server" : [ "-" ],
-      "Set-Cookie" : [ "Watson-DPAT=Apu1HgJej2NUwSxhL11PjjdclMwpcECci%2Fkuo%2BGrbbfSxC09q%2FhmZ8OVCs59qjs%2BGD2uBY0n8%2FidFJZUBYs5SzEwtxwUJ%2B5%2Fg3xleUrmsyQGwFyX5CpPmC6yUBTe9K2Hgs9ApkFM917A1VTu3scUN95Ii4mYDRAGP7J4nLs60Lwj9blNj%2BQDS3lMuFclfvB334xFwLuRMRq3%2BPPkdp8qwcvQL3yoWaI2NwTWVk1vPF3m%2B%2BsOvH3ETUtkAWtGV9qYuCKJo5nIi5jnsdKtymBunRJDXd2vNAabwEvheJAySY4j%2FDZrkd68vMYuTfgfaFv1BBquQJS5n%2F2Flc85dG45tdELmV6r98wLcnCNyo2Enk4Hqi6rtH3ZRtUZ%2BBTWHbGhcFjvDXG%2FfS0rWjXhpMAU0pjXvHK4XEtrcdsRFUGHOHJ0NtsoRiMndsIiWKlKkd6vyoxsXNT%2Fml6JS58HGl%2BAzuNPRtus4anWYnxM%2FotcxtFITJQhjSOR85HRYw6Nrbc13B5cg1LUckKLyMvNt6Q8LXu1v8AGGJYABJnJr%2Fps%2BuUD7av1Hypn5J2UaZ0WmUzqPLwcsSLGdKgIlajrgKXD6YlxkOJIxCBdKhljcO5uiFHEhLlhCJt9XaKR2jkZtc1qToo9ilpOL%2BnlwxruLWgoOlyGpFPsnlwQP0j8nvJtVLi0YOG2%2B4pyQE5WLX%2BDQEv3e8PNoCHsVV0tpBPc1wKgQKE9j51fP5jDMcVnd20Az7Ye9onWHdrQQkbRmTcpGuwxRAxn%2B3vHCvaaNMptfz5LuheASrFAxAFfjAMCpx%2FK0LqsXit1MhIxLg30nvR3RLRQchhSxBihCs5%2BpHdSMRI6%2FDjsdVC6a9HsiGbCFX5e%2BOsEtrVhV%2BPPFP33bKLqCFy5SI7myzQ%2F%2Fncrc%2B3Yp9RgJ3IBcqjXi%2FQAzJLco%2FkOs90z6QP0NlgPyLHWMgYV27zwfWY7QSwt%2FBR77fiBItnxIoMqw7C3g8WILoc0wff%2FO9o%3D; path=/natural-language-understanding/api; secure; HttpOnly" ],
+      "Set-Cookie" : [ "Watson-DPAT=%2F9JAyrPDvkotDztL0tuWvOlaQjXn4MrvW9Ti4VZlxt%2FD9q%2FQypGuQpbkOxWDxK%2FXaa%2FbJNIVN247aGPgyW5NNRiSaMA8QEQWOKq3GzLMllwIXvFE5usQ9qRX49xjq7I8IORYx9nd%2FYTWxvDtXUjC1AbCQDuP8edWoTb%2Fh5%2B5nHaiRb1Qv70n4HfK6kzDLtqeEZ0DHhj15dqFqyM6FdpiqPQL4snsLBfwsYK2az%2BbncYnt6m9rkITfoAQuoAzHls7K5Du8BIhhowD65Epp9wcJizc3BIAhuBqveetGFqCy9L0U7JwL1x0i40Qj5wOzjEUE8ZAY2YYFbzXY1q8X39gopGA%2BOb8QNyjj%2Bdxk4OY0rYUtN7LN9%2FCk5XBgWhlPuCzViHGoaXyrN7vXK%2Bo3ENnsC74cOnWvs3SS2wQbowtBBwn45ne2Tk57ju1Yy3sktRJoNelRX9GumDGLTCliFHvQYPIXIyUKIT8D0xYhv5M47LM2e1Jtxx4xqEr9jNKfIKke1UR6qc15IiR6l4AmHNDguNfjde%2BK95KGivjVDrmBH8KSasv2Gz%2BnQX1bTM5A9%2F28dyRRx9my1QSISDCHfbSCL48lIVWsr9y5peZq5eErG0MeRv5h%2BRc7EbIU07TcrgoSJTPnNGEfq3dkUk1Hp4h9ZIp5OS9GWlp%2FUo8wCFx0vNZfeK8tSma4eYU4fXXOFjLFoMv2ADPRUdQo6F2XDIktWepyObBLJZAKObBTNRoz8QYwjM4JBblQbPGvM6SrEKbgnwIHz4HSp8Q6N8Uz1qqwBGkzG0RTR4eZcmkn%2F5e4ReUCZi4VYv04VXYcWDIqSkqzKq7yJXFjYArNo%2BdVWND0LM97uX7JF6de7%2BQMarkam8bN%2Ffq3Y2tuNJCjLYFrP6Ewl1Y8%2Fs2JmgnFNtpvOEmvk1y68%2Fu7yCGY1jecmFHLpujyxbz017%2BLMk3IbkXrloGG%2FVHJpKWFYk%3D; path=/natural-language-understanding/api; secure; HttpOnly" ],
       "X-Client-IP" : [ "52.203.158.64" ],
-      "X-Global-Transaction-ID" : [ "268051360" ],
+      "X-Global-Transaction-ID" : [ "1255687228" ],
       "Strict-Transport-Security" : [ "max-age=31536000;" ],
-      "X-DP-Watson-Tran-ID" : [ "gateway-dp01-268051360" ]
+      "X-DP-Watson-Tran-ID" : [ "gateway-dp02-1255687228" ]
     }
   },
   "redirectEnabled" : true,

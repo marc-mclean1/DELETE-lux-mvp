@@ -57,238 +57,19 @@
       "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.RootResponse",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ],
       "properties" : {
-        "keywords" : {
-          "x-WM-IS_LIST" : true,
-          "items" : {
-            "$ref" : "#/definitions/keywordsEntryItem"
-          },
-          "uniqueItems" : false,
-          "type" : "array"
-        },
-        "categories" : {
-          "x-WM-IS_LIST" : true,
-          "items" : {
-            "$ref" : "#/definitions/categoriesEntryItem"
-          },
-          "uniqueItems" : false,
-          "type" : "array"
-        },
-        "language" : {
+        "error" : {
           "type" : "string"
         },
-        "entities" : {
-          "x-WM-IS_LIST" : true,
-          "items" : {
-            "$ref" : "#/definitions/entitiesEntryItem"
-          },
-          "uniqueItems" : false,
-          "type" : "array"
+        "code" : {
+          "format" : "int32",
+          "type" : "integer"
         }
       },
-      "required" : [ "categories", "entities", "keywords", "language" ]
-    },
-    "sentiment" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.sentiment",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "score" : {
-          "format" : "double",
-          "type" : "number"
-        }
-      },
-      "required" : [ "score" ]
+      "required" : [ "code", "error" ]
     },
     "RootRequest" : {
       "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.RootRequest",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "text" : {
-          "type" : "string"
-        },
-        "features" : {
-          "$ref" : "#/definitions/features"
-        }
-      },
-      "required" : [ "features", "text" ]
-    },
-    "disambiguation" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.disambiguation",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "name" : {
-          "type" : "string"
-        },
-        "subtype" : {
-          "x-WM-IS_LIST" : true,
-          "items" : {
-            "type" : "string"
-          },
-          "uniqueItems" : false,
-          "type" : "array"
-        },
-        "dbpedia_resource" : {
-          "type" : "string"
-        }
-      },
-      "required" : [ "dbpedia_resource", "name", "subtype" ]
-    },
-    "keywords" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.keywords",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "limit" : {
-          "format" : "int32",
-          "type" : "integer"
-        },
-        "sentiment" : {
-          "type" : "boolean"
-        },
-        "emotion" : {
-          "type" : "boolean"
-        }
-      },
-      "required" : [ "emotion", "limit", "sentiment" ]
-    },
-    "entitiesEntryItem" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.entitiesEntryItem",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "sentiment" : {
-          "$ref" : "#/definitions/sentiment"
-        },
-        "disambiguation" : {
-          "$ref" : "#/definitions/disambiguation"
-        },
-        "text" : {
-          "type" : "string"
-        },
-        "count" : {
-          "format" : "int32",
-          "type" : "integer"
-        },
-        "relevance" : {
-          "format" : "double",
-          "type" : "number"
-        },
-        "type" : {
-          "type" : "string"
-        },
-        "emotion" : {
-          "$ref" : "#/definitions/emotion"
-        }
-      },
-      "required" : [ "count", "disambiguation", "emotion", "relevance", "sentiment", "text", "type" ]
-    },
-    "features" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.features",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "keywords" : {
-          "$ref" : "#/definitions/keywords"
-        },
-        "categories" : {
-          "$ref" : "#/definitions/categories"
-        },
-        "entities" : {
-          "$ref" : "#/definitions/entities"
-        }
-      },
-      "required" : [ "categories", "entities", "keywords" ]
-    },
-    "categories" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.categories",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "limit" : {
-          "format" : "int32",
-          "type" : "integer"
-        },
-        "sentiment" : {
-          "type" : "boolean"
-        },
-        "emotion" : {
-          "type" : "boolean"
-        }
-      },
-      "required" : [ "emotion", "limit", "sentiment" ]
-    },
-    "entities" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.entities",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "limit" : {
-          "format" : "int32",
-          "type" : "integer"
-        },
-        "sentiment" : {
-          "type" : "boolean"
-        },
-        "emotion" : {
-          "type" : "boolean"
-        }
-      },
-      "required" : [ "emotion", "limit", "sentiment" ]
-    },
-    "categoriesEntryItem" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.categoriesEntryItem",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "score" : {
-          "format" : "double",
-          "type" : "number"
-        },
-        "label" : {
-          "type" : "string"
-        }
-      },
-      "required" : [ "label", "score" ]
-    },
-    "keywordsEntryItem" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.keywordsEntryItem",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "sentiment" : {
-          "$ref" : "#/definitions/sentiment"
-        },
-        "text" : {
-          "type" : "string"
-        },
-        "relevance" : {
-          "format" : "double",
-          "type" : "number"
-        },
-        "emotion" : {
-          "$ref" : "#/definitions/emotion"
-        }
-      },
-      "required" : [ "emotion", "relevance", "sentiment", "text" ]
-    },
-    "emotion" : {
-      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.emotion",
-      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
-      "properties" : {
-        "disgust" : {
-          "format" : "double",
-          "type" : "number"
-        },
-        "sadness" : {
-          "format" : "double",
-          "type" : "number"
-        },
-        "anger" : {
-          "format" : "double",
-          "type" : "number"
-        },
-        "joy" : {
-          "format" : "double",
-          "type" : "number"
-        },
-        "fear" : {
-          "format" : "double",
-          "type" : "number"
-        }
-      },
-      "required" : [ "anger", "disgust", "fear", "joy", "sadness" ]
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     }
   },
   "securityDefinitions" : {
@@ -298,7 +79,7 @@
   },
   "info" : {
     "x-WM-SERVICE_TYPE" : "RestService",
-    "x-WM-API_ID" : "db8c7d0e-5e2d-4f23-bffc-dc0a37275350",
+    "x-WM-API_ID" : "7f68bb9d-3e92-4f73-aab3-a809fbc1c906",
     "x-WM-USE_PROXY_FOR_WEB" : true,
     "x-WM-SERVICE_ID" : "watsonplatform",
     "x-WM-USE_PROXY_FOR_MOBILE" : true,
