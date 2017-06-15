@@ -53,10 +53,19 @@
 }
 
 /*********Label styling**********/
-.chat .popover label {
+.chat .popover {
     margin: 0;
     padding: .5em 1em;
 }
+
+.chat ul>li:not(:last-child) .chat-btn{
+    display:none;
+}
+
+.chat .popover .chat-btn {
+    margin: 2px;
+}
+
 /*
 .chat .user-message {
     border-top-right-radius: 0;

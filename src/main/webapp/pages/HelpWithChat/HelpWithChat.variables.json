@@ -1,1 +1,176 @@
-{"convEntities":{"_id":"wm-convEntities-wm.Variable-1497354547439","name":"convEntities","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":{},"type":"string","isList":false,"saveInPhonegap":false},"invokeDiscoveryService":{"_id":"wm-invokeDiscoveryService-wm.ServiceVariable-1497244737420","name":"invokeDiscoveryService","owner":"Page","category":"wm.ServiceVariable","dataBinding":[{"target":"passages","value":"true","type":"string"},{"target":"natural_language_query","value":"call interpreter","type":"string"},{"target":"count","value":"10","type":"string"},{"target":"version","value":"2016-12-01","type":"string"},{"target":"environment_id","value":"39f3a71c-b6bb-4c65-b494-4ba9266c1458","type":"string"},{"target":"collection_id","value":"0bc60c10-514d-418c-ab56-a925159103a7","type":"string"},{"target":"wm_auth_username","value":"a1265d8b-84a4-456b-a195-714b1f675edc"},{"target":"wm_auth_password","value":"8GUMLBWhfIgc"}],"type":"watsonDiscoveryWithFilter.RootResponse","service":"watsonDiscoveryWithFilter","operation":"invoke","operationId":"watsonDiscoveryWithFilter_RestServiceVirtualController-invoke","operationType":"get","serviceType":"RestService","dataSet":[],"isList":false,"maxResults":20,"onSuccess":"invokeDiscoveryServiceOnSuccess($event, $scope)","onError":"invokeDiscoveryServiceOnError($event, $scope)","startUpdate":false,"autoUpdate":false,"inFlightBehavior":"executeLast","transformationRequired":false,"saveInPhonegap":false,"controller":"RestServiceVirtual","spinnerContext":"accordionpane4","spinnerMessage":"Querying the knowledge base. Please wait..."},"invokeNLUService":{"_id":"wm-invokeNLUService-wm.ServiceVariable-1497222907030","name":"invokeNLUService","owner":"Page","category":"wm.ServiceVariable","dataBinding":[{"target":"version","value":"2017-02-27","type":"string"},{"target":"wm_auth_username","value":"cca20581-fab7-4f23-83cc-8958f4243cf9"},{"target":"wm_auth_password","value":"5fG44gfRclgK"}],"type":"watsonNLUService.RootResponse","service":"watsonNLUService","operation":"invoke","operationId":"watsonNLUService_RestServiceVirtualController-invoke","operationType":"post","serviceType":"RestService","dataSet":[],"isList":false,"maxResults":20,"onResult":"invokeNLUServiceOnResult($event, $scope)","onSuccess":"invokeNLUServiceOnSuccess($event, $scope)","onError":"invokeNLUServiceOnError($event, $scope)","startUpdate":false,"autoUpdate":false,"inFlightBehavior":"executeLast","transformationRequired":false,"saveInPhonegap":false,"controller":"RestServiceVirtual"},"isReadyToSearch":{"_id":"wm-staticBoolReadyToSearch-wm.Variable-1497353011676","name":"isReadyToSearch","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":{"dataValue":false},"type":"boolean","isList":false,"saveInPhonegap":false},"nlqUserInputs":{"_id":"wm-nlqUserInputs-wm.Variable-1497372471235","name":"nlqUserInputs","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":[{"input":""}],"type":"string","isList":true,"saveInPhonegap":false},"nluConcepts":{"_id":"wm-nluConcepts-wm.Variable-1497354676306","name":"nluConcepts","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":{},"type":"string","isList":false,"saveInPhonegap":false},"nluEntities":{"_id":"wm-nluEntities-wm.Variable-1497354658623","name":"nluEntities","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":{},"type":"string","isList":false,"saveInPhonegap":false},"nluKeywords":{"_id":"wm-nluKeywords-wm.Variable-1497354685596","name":"nluKeywords","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":{},"type":"string","isList":false,"saveInPhonegap":false},"staticUserInputs":{"_id":"wm-staticVariable3-wm.Variable-1497121401909","name":"staticUserInputs","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":[{"input":""}],"type":"string","isList":true,"saveInPhonegap":false}}
+{
+  "convEntities" : {
+    "_id" : "wm-convEntities-wm.Variable-1497354547439",
+    "name" : "convEntities",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : { },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "invokeDiscoveryService" : {
+    "_id" : "wm-invokeDiscoveryService-wm.ServiceVariable-1497244737420",
+    "name" : "invokeDiscoveryService",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "passages",
+      "value" : "true",
+      "type" : "string"
+    }, {
+      "target" : "natural_language_query",
+      "value" : "call interpreter",
+      "type" : "string"
+    }, {
+      "target" : "count",
+      "value" : "10",
+      "type" : "string"
+    }, {
+      "target" : "version",
+      "value" : "2016-12-01",
+      "type" : "string"
+    }, {
+      "target" : "environment_id",
+      "value" : "39f3a71c-b6bb-4c65-b494-4ba9266c1458",
+      "type" : "string"
+    }, {
+      "target" : "collection_id",
+      "value" : "0bc60c10-514d-418c-ab56-a925159103a7",
+      "type" : "string"
+    }, {
+      "target" : "wm_auth_username",
+      "value" : "a1265d8b-84a4-456b-a195-714b1f675edc"
+    }, {
+      "target" : "wm_auth_password",
+      "value" : "8GUMLBWhfIgc"
+    } ],
+    "type" : "watsonDiscoveryWithFilter.RootResponse",
+    "service" : "watsonDiscoveryWithFilter",
+    "operation" : "invoke",
+    "operationId" : "watsonDiscoveryWithFilter_RestServiceVirtualController-invoke",
+    "operationType" : "get",
+    "serviceType" : "RestService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "invokeDiscoveryServiceOnSuccess($event, $scope)",
+    "onError" : "invokeDiscoveryServiceOnError($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "RestServiceVirtual",
+    "spinnerContext" : "livelist2",
+    "spinnerMessage" : "Querying the knowledge base. Please wait..."
+  },
+  "invokeNLUService" : {
+    "_id" : "wm-invokeNLUService-wm.ServiceVariable-1497222907030",
+    "name" : "invokeNLUService",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "version",
+      "value" : "2017-02-27",
+      "type" : "string"
+    }, {
+      "target" : "wm_auth_username",
+      "value" : "cca20581-fab7-4f23-83cc-8958f4243cf9"
+    }, {
+      "target" : "wm_auth_password",
+      "value" : "5fG44gfRclgK"
+    } ],
+    "type" : "watsonNLUService.RootResponse",
+    "service" : "watsonNLUService",
+    "operation" : "invoke",
+    "operationId" : "watsonNLUService_RestServiceVirtualController-invoke",
+    "operationType" : "post",
+    "serviceType" : "RestService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onResult" : "invokeNLUServiceOnResult($event, $scope)",
+    "onSuccess" : "invokeNLUServiceOnSuccess($event, $scope)",
+    "onError" : "invokeNLUServiceOnError($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "RestServiceVirtual"
+  },
+  "isReadyToSearch" : {
+    "_id" : "wm-staticBoolReadyToSearch-wm.Variable-1497353011676",
+    "name" : "isReadyToSearch",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "nlqUserInputs" : {
+    "_id" : "wm-nlqUserInputs-wm.Variable-1497372471235",
+    "name" : "nlqUserInputs",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "input" : ""
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "nluConcepts" : {
+    "_id" : "wm-nluConcepts-wm.Variable-1497354676306",
+    "name" : "nluConcepts",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : { },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "nluEntities" : {
+    "_id" : "wm-nluEntities-wm.Variable-1497354658623",
+    "name" : "nluEntities",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : { },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "nluKeywords" : {
+    "_id" : "wm-nluKeywords-wm.Variable-1497354685596",
+    "name" : "nluKeywords",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : { },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "staticUserInputs" : {
+    "_id" : "wm-staticVariable3-wm.Variable-1497121401909",
+    "name" : "staticUserInputs",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "input" : ""
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  }
+}

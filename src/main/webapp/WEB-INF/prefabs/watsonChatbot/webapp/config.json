@@ -54,6 +54,21 @@
       "widget" : "string",
       "show" : false,
       "disabled" : false
+    },
+    "onBeforesend" : {
+      "type" : "event",
+      "widget" : "eventlist",
+      "show" : true,
+      "disabled" : false
+    },
+    "requestbody" : {
+      "type" : "string",
+      "displayName" : "Requestbody",
+      "bindable" : "out-bound",
+      "value" : "bind:requestbody",
+      "widget" : "string",
+      "show" : false,
+      "disabled" : false
     }
   }
 }
