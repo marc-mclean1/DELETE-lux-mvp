@@ -9,7 +9,7 @@ target/**
 .git/**
 .svn/**
 .tmp
-.bkp
+*.bkp
 lib/project-external-dependency-jars/**
 src/main/webapp/WEB-INF/classes/**
 src/main/webapp/WEB-INF/lib/**

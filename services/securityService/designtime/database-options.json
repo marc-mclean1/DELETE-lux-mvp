@@ -1,0 +1,19 @@
+{
+  "modelName" : "HR_Chat_Box",
+  "entityName" : "User",
+  "tableName" : "User",
+  "unamePropertyName" : "userId",
+  "unameColumnName" : "User_ID",
+  "uidPropertyName" : "userId",
+  "uidColumnName" : "User_ID",
+  "pwPropertyName" : "password",
+  "pwColumnName" : "Password",
+  "rolePropertyName" : "",
+  "roleColumnName" : "",
+  "useRolesQuery" : false,
+  "rolesByUsernameQuery" : "",
+  "tenantIdField" : null,
+  "defTenantId" : 0,
+  "tenantIdPropertyName" : null,
+  "queryType" : "HQL"
+}

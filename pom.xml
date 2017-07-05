@@ -13,6 +13,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/HR_Chat_Box/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/securityService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -110,6 +117,7 @@
                         </goals>
                         <configuration>
                             <sources>
+                                <source>services/HR_Chat_Box/src</source>
                                 <source>services/securityService/src</source>
                                 <source>services/watsonDiscoveryWithFilter/src</source>
                                 <source>services/watsonNLUService/src</source>
@@ -280,6 +288,11 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -310,6 +323,6 @@
         <profile.props.file>development.properties</profile.props.file>
         <spring.version>4.2.0.RELEASE</spring.version>
         <spring.security.version>4.1.2.RELEASE</spring.security.version>
-        <wavemaker.studio.version>8.4.2.2</wavemaker.studio.version>
+        <wavemaker.studio.version>8.5.0</wavemaker.studio.version>
     </properties>
 </project>

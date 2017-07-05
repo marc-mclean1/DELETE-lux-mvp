@@ -16,6 +16,7 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
     };
 
 
+
     $scope.watsonChatbot2Watsonresponse = function($isolateScope) {
         var data = $isolateScope.watsonresponse;
 
@@ -41,6 +42,9 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
             if (_.includes(data.output.nodes_visited, "Irrelevant")) {
                 console.log("Found IRRELEVANT");
                 $scope.Variables.isReadyToSearch.setValue("dataValue", true);
+            } else if (data.intents && data.intents[0].confidence < 0.3) {
+                console.log("Low confidence", data.intents[0].confidence);
+                $scope.Variables.isReadyToSearch.setValue("dataValue", true);
             }
 
             // Capture the user input into an array.
@@ -65,17 +69,18 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
             console.log("After async call to sendInputToNLU");
 
             var hasPDF = parseDataForPDF(data);
+            $scope.Widgets.iframeJobAid.show = hasPDF;
             if (hasPDF || data.context.isReadyToSearch) {
                 $scope.Variables.isReadyToSearch.setValue("dataValue", true);
+
             }
             console.log("FromConv isReadyToSearch = " + $scope.Variables.isReadyToSearch.getValue("dataValue"));
         }
     }; // END $scope.watsonChatbot2Watsonresponse = function($isolateScope) {
 
     $scope.getFileUrl = function(doc) {
-        var url = "resources/files/" + "test.pdf";
-
-        //$scope.sourceURL = "resources/files/" + url.replace(/ /g, '_');
+        var url = "resources/files/" + doc.replace("~page", "#page").replace(/ /g, '_').replace("(", "_").replace(")", "_");
+        console.log("FOUND PDF:", doc, " --> ", url);
         return url;
     }
 
@@ -202,9 +207,6 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
 
 
 
-
-
-
     // Build Discovery Query and send to service...
     function sendInputToDiscovery() {
 
@@ -217,9 +219,21 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
 
             console.log("nlq: " + snlq);
 
+            // we will always get 10 passages; count governs how many documents we return.
+            $scope.Variables.invokeDiscoveryService.setInput('count', "20");
             $scope.Variables.invokeDiscoveryService.setInput('query', "");
-            $scope.Variables.invokeDiscoveryService.setInput('filter', "");
+
+            $scope.Variables.invokeDiscoveryService.setInput('highlight', false);
             $scope.Variables.invokeDiscoveryService.setInput('natural_language_query', snlq);
+
+            /* NOTE:
+            // We could send discovery query first for relevancy-trained document IDs.
+            // Then we could send subsequent passage retreival query filtered by document IDs from first.
+            // query has the form:
+            $scope.Variables.invokeDiscoveryService.setInput('filter', "_id:(a769fcaf-a1da-4912-8c29-1f02bde160cc|709f2029-e3b7-43c5-a496-734008683f03)|original_page:125");
+            */
+
+
         } else {
             // Build the smart query...
             var keywordParams = [];
@@ -278,6 +292,7 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
 
             $scope.Variables.invokeDiscoveryService.setInput('query', keywordParams.length ? (keywordParams.join(',')) : "");
             $scope.Variables.invokeDiscoveryService.setInput('filter', entityParams.length ? (entityParams.join(',')) : "");
+            $scope.Variables.invokeDiscoveryService.setInput('highlight', true);
             $scope.Variables.invokeDiscoveryService.setInput('natural_language_query', "");
         }
 
@@ -296,8 +311,63 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
     };
     // "onSuccess": "invokeNLUServiceonSuccess($event, $scope)",
     $scope.invokeDiscoveryServiceOnSuccess = function(variable, data) {
-        //needed to empty the datavalue as the widget has a minor bug
         console.log("invokeDiscoveryServiceOnSuccess:", variable, data);
+
+        // for each returning passage, pull in the associated document information...
+        // per Anish, there is no guarantee that the associated document will exist in RESULTS,
+        // but it is highly likely.
+        var passageIDs = _.map(data.passages, 'document_id');
+        var resultIDs = _.map(data.results, 'id');
+
+        console.log("passages", passageIDs);
+        console.log("results", resultIDs);
+
+        _.forEach(passageIDs, function(v, k) {
+            var i = _.indexOf(resultIDs, v);
+            if (i == -1) {
+                console.log(k, v, "Document NOT found.");
+            } else {
+                console.log(k, v, "Document found at", i);
+            }
+        });
+        _.forEach(resultIDs, function(v, k) {
+            var i = _.indexOf(passageIDs, v);
+            if (i == -1) {
+                console.log(k, v, "Passage NOT found.");
+            } else {
+                console.log(k, v, "Passage found at", i);
+            }
+        });
+
+        // massage the data here so it gets reflected in the livelist widget
+        for (var i = (data.results.length - 1); i >= 0; i--) {
+            var id = data.results[i].id;
+            // we are retrieving 20 documents and fixed 10 passages.
+            // this should be a sufficient number of documents to make sure that the backing document
+            // for each passage is returned. (at least until we have a trained system)
+            var idx = _.indexOf(passageIDs, id);
+            if (idx == -1) {
+                console.log(i, id, "Removing: No passage found for document.");
+                data.results.splice(i, 1);
+            } else {
+                console.log(i, id, "Updating: Passage found for document.");
+                data.results[i].text = data.passages[idx].passage_text;
+            }
+        }
+
+
+        // Remove duplicate PDF references...
+        // Do not do this for the moment, we might have a case where a single pdf is referenced
+        // by multiple passages, in which case, we could show the same doc reference w different passages.
+        for (var i = (data.results.length - 1); i > 0; i--) {
+            if (data.results[i].single_pdf === data.results[i - 1].single_pdf) {
+                console.log("Removing", i, id);
+                //data.results.splice(i, 1);
+            }
+        }
+
+
+
         // $scope.Widgets.entityCheckbox.datavalue = [];
         // $scope.Widgets.keywordCheckbox.datavalue = [];
         // $scope.Widgets.entity_ConversationCheckbox.datavalue = [];
@@ -310,77 +380,12 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
     // Check watson output for text of the form [test.pdf][page#] and handle accordingly.
     function parseDataForPDF(data) {
         var ret = false;
-
-        /* First, check for data in context variable */
+        /* TODO: validate pdf in context variable */
         if (data.context.file && data.context.file.url) {
             // Handle if found in context.
-            var url = data.context.file.url.replace("~page", "#page");
-            console.log("FOUND PDF IN CONTEXT:", url);
-            $scope.sourceURL = "resources/files/" + url.replace(/ /g, '_');
+            $scope.sourceURL = $scope.getFileUrl(data.context.file.url);
             data.context.file = {};
             ret = true;
-        } else {
-            //ret = parseDataForPDF_deprecated(data);
-        }
-        return ret;
-    }
-
-
-    // Remove this method for production... it is deprecated now that we are storing file information in context.        
-    function parseDataForPDF_deprecated(data) {
-        var ret = false;
-        var output_text = _.get(data, 'output.text');
-
-        /* check for a message from chat, last entry first */
-        if (Array.isArray(output_text)) {
-            _.forEachRight(output_text, function(text, index) {
-                if (_.includes(text, ".pdf]")) {
-                    console.log("FOUND PDF");
-                    var boolClearPDF = false;
-                    // parse the PDF information (find last mentioned PDF)
-                    var pos = text.lastIndexOf(".pdf]");
-                    for (var i = pos; i >= 0; i--) {
-                        if (text[i] == "[") {
-                            ret = true;
-                            if (i !== 0 && text[i - 1] == "-") {
-                                boolClearPDF = true;
-                            }
-                            pos += 4;
-                            var pdf = text.substring(i + 1, pos);
-                            var page = "";
-                            var url = pdf;
-                            var im = text.length;
-                            if (pos + 1 < im && text[pos + 1] == "[") {
-                                for (i = (pos + 2); i < im; i++) {
-                                    if (text[i] == "]") {
-                                        page = _.toInteger(text.substring(pos + 2, i));
-                                        if (page > 0) {
-                                            console.log("FOUND PAGE");
-                                            url += "#page=" + page;
-                                            page = "[" + page + "]";
-                                        }
-                                        break;
-                                    }
-                                }
-                            }
-                            console.log("URL = " + url);
-
-                            // only handle if an open bracket is found, otherwise, we do nothing.
-                            $scope.sourceURL = "resources/files/" + url.replace(/ /g, '_');
-
-                            // Now, depending on boolClearPDF, either remove brackets or entire reference.
-                            if (boolClearPDF) {
-                                data.output.text[index] = text.replace("-[" + pdf + "]" + page, "");
-                            } else { // will preserve page as i.e., test.pdf[2].
-                                data.output.text[index] = text.replace("[" + pdf + "]", pdf);
-                            }
-                            break;
-                        }
-                    }
-                }
-            });
-        } else {
-            //handle the string - this should never happen.
         }
         return ret;
     }
@@ -408,4 +413,31 @@ Application.$controller("HelpWithChatPageController", ["$scope", function($scope
 
 
 
+
+    $scope.button1Click = function($event, $isolateScope) {
+        $scope.Widgets.watsonChatbot2.send("message to be sent");
+
+    };
+
+
+    $scope.watsonChatbot2Beforesend = function($isolateScope) {
+        // Clear buttons in outbound context, since they have already been handled at this point.
+        if ($isolateScope.requestbody.context) {
+            $isolateScope.requestbody.context.input = {};
+        }
+        console.log("watsonChatbot2Beforesend:", $isolateScope.requestbody);
+    };
+
+
+    $scope.rating1Change = function($event, $isolateScope, item, currentItemWidgets, newVal, oldVal) {
+
+    };
+
 }]); // END Application.$controller
+
+Application.$controller("iframedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);

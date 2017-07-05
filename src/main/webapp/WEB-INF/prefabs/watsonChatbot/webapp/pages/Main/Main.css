@@ -53,7 +53,7 @@
 }
 
 /*********Label styling**********/
-.chat .popover label {
+.chat .popover {
     margin: 0;
     padding: .5em 1em;
 }

@@ -4,7 +4,9 @@
     <bean class="com.wavemaker.runtime.security.controller.SecurityController" id="securityController"/>
     <bean class="com.wavemaker.runtime.web.filter.SSLSecureFilter" id="sslSecureFilter"/>
     <bean class="com.wavemaker.runtime.security.xss.filter.WMXSSFilter" id="wmXSSFilter"/>
-    <bean class="com.wavemaker.runtime.security.filter.WMXFrameOptionsHeaderFilter" id="wmXFrameOptionsFilter"/>
+    <bean class="com.wavemaker.runtime.security.filter.WMXFrameOptionsHeaderFilter" id="wmXFrameOptionsFilter">
+        <property name="xFrameOptionsMode" value="SAMEORIGIN"/>
+    </bean>
     <bean class="com.wavemaker.runtime.security.filter.WMXContentTypeOptionsFilter" id="wmXContentTypeOptionsFilter"/>
     <bean class="org.springframework.security.web.FilterChainProxy" id="wmCompositeSecurityFilter">
         <constructor-arg>
@@ -270,6 +272,15 @@
                     <constructor-arg>
                         <list>
                             <value>ROLE_trainer</value>
+                        </list>
+                    </constructor-arg>
+                </bean>
+                <bean class="com.wavemaker.runtime.security.WMUser">
+                    <constructor-arg value="associate"/>
+                    <constructor-arg value="associate"/>
+                    <constructor-arg>
+                        <list>
+                            <value>ROLE_user</value>
                         </list>
                     </constructor-arg>
                 </bean>

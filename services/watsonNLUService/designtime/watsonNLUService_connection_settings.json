@@ -1,31 +1,30 @@
 {
   "endpointAddress" : "https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze",
   "method" : "POST",
-  "requestBody" : "{\n  \"text\": \"manager\",\n  \"text\": \"no\",\n  \"text\": \"intermittent leave\",\n  \"text\": \"how do i call an interpreter on my mobile phone\",\n  \"text\": \"i don't speak italian\",\n  \"text\": \"i don't speak spanish\",\n  \"text\": \"how do i connect to an interpreter\",\n  \"features\": {\n    \"entities\": {\n      \"emotion\": false,\n      \"sentiment\": false,\n      \"limit\": 5\n    },\n    \"keywords\": {\n      \"emotion\": false,\n      \"sentiment\": false,\n      \"limit\": 5\n    },\n    \"concepts\": {\n      \"limit\": 5\n    },\n    \"semantic_roles\": {\n      \"entities\": true,\n      \"keywords\": true,\n      \"limit\": 5\n    },\n    \"categories\": {},\n    \"relations\": {},\n    \"sentiment\": {}\n  }\n}",
+  "requestBody" : "{\n  \"text\": \"intermittent leave\",\n  \"text\": \"how do i call an interpreter on my mobile phone\",\n  \"text\": \"i don't speak italian\",\n  \"text\": \"i don't speak spanish\",\n  \"text\": \"how do i connect to an interpreter\",\n  \"features\": {\n    \"entities\": {\n      \"emotion\": false,\n      \"sentiment\": false,\n      \"limit\": 5\n    },\n    \"keywords\": {\n      \"emotion\": false,\n      \"sentiment\": false,\n      \"limit\": 5\n    },\n    \"concepts\": {\n      \"limit\": 5\n    },\n    \"semantic_roles\": {\n      \"entities\": true,\n      \"keywords\": true,\n      \"limit\": 5\n    },\n    \"categories\": {},\n    \"relations\": {},\n    \"sentiment\": {}\n  }\n}",
   "headers" : {
-    "Authorization" : [ "Basic Y2NhMjA1ODEtZmFiNy00ZjIzLTgzY2MtODk1OGY0MjQzY2Y5OjVmRzQ0Z2ZSY2xnSw==" ]
+    "Authorization" : [ "Basic MjA2MTc0ZTMtYzlmMS00YzU5LWIwZDYtMzYxMDE0ZDNjY2UwOnBDTG5hQ0ZFSFRURg==" ]
   },
   "queryParams" : {
     "version" : "2017-02-27"
   },
   "sampleHttpResponseDetails" : {
-    "responseBody" : "{\"error\":\"not enough text for language id\",\"code\":422}",
+    "responseBody" : "{\"sentiment\":{\"document\":{\"score\":-0.841795,\"label\":\"negative\"}},\"semantic_roles\":[],\"relations\":[],\"language\":\"en\",\"keywords\":[{\"text\":\"intermittent leave\",\"relevance\":0.985714}],\"entities\":[],\"concepts\":[],\"categories\":[{\"score\":0.85016,\"label\":\"/health and fitness/disease/asthma\"},{\"score\":0.31794,\"label\":\"/health and fitness/disease/headaches and migraines\"},{\"score\":0.168427,\"label\":\"/business and industrial/energy/renewable energy\"}]}",
     "convertedResponse" : null,
-    "statusCode" : 422,
+    "statusCode" : 200,
     "headers" : {
-      "X-Backside-Transport" : [ "FAIL FAIL" ],
+      "X-Backside-Transport" : [ "OK OK" ],
       "Connection" : [ "Keep-Alive" ],
       "Transfer-Encoding" : [ "chunked" ],
-      "date" : [ "Mon, 12 Jun 2017 03:22:28 GMT" ],
-      "x-request-id" : [ "j40agf8ta81q6njg5nuth43a545k4vr3" ],
+      "date" : [ "Thu, 22 Jun 2017 22:52:16 GMT" ],
+      "x-request-id" : [ "ougiajakkll6qqdp3vvrvlb39bgj9ihu" ],
       "cache-control" : [ "max-age=0, private, must-revalidate" ],
       "Content-Type" : [ "application/json;charset=utf-8" ],
       "Server" : [ "-" ],
-      "Set-Cookie" : [ "Watson-DPAT=%2F9JAyrPDvkotDztL0tuWvOlaQjXn4MrvW9Ti4VZlxt%2FD9q%2FQypGuQpbkOxWDxK%2FXaa%2FbJNIVN247aGPgyW5NNRiSaMA8QEQWOKq3GzLMllwIXvFE5usQ9qRX49xjq7I8IORYx9nd%2FYTWxvDtXUjC1AbCQDuP8edWoTb%2Fh5%2B5nHaiRb1Qv70n4HfK6kzDLtqeEZ0DHhj15dqFqyM6FdpiqPQL4snsLBfwsYK2az%2BbncYnt6m9rkITfoAQuoAzHls7K5Du8BIhhowD65Epp9wcJizc3BIAhuBqveetGFqCy9L0U7JwL1x0i40Qj5wOzjEUE8ZAY2YYFbzXY1q8X39gopGA%2BOb8QNyjj%2Bdxk4OY0rYUtN7LN9%2FCk5XBgWhlPuCzViHGoaXyrN7vXK%2Bo3ENnsC74cOnWvs3SS2wQbowtBBwn45ne2Tk57ju1Yy3sktRJoNelRX9GumDGLTCliFHvQYPIXIyUKIT8D0xYhv5M47LM2e1Jtxx4xqEr9jNKfIKke1UR6qc15IiR6l4AmHNDguNfjde%2BK95KGivjVDrmBH8KSasv2Gz%2BnQX1bTM5A9%2F28dyRRx9my1QSISDCHfbSCL48lIVWsr9y5peZq5eErG0MeRv5h%2BRc7EbIU07TcrgoSJTPnNGEfq3dkUk1Hp4h9ZIp5OS9GWlp%2FUo8wCFx0vNZfeK8tSma4eYU4fXXOFjLFoMv2ADPRUdQo6F2XDIktWepyObBLJZAKObBTNRoz8QYwjM4JBblQbPGvM6SrEKbgnwIHz4HSp8Q6N8Uz1qqwBGkzG0RTR4eZcmkn%2F5e4ReUCZi4VYv04VXYcWDIqSkqzKq7yJXFjYArNo%2BdVWND0LM97uX7JF6de7%2BQMarkam8bN%2Ffq3Y2tuNJCjLYFrP6Ewl1Y8%2Fs2JmgnFNtpvOEmvk1y68%2Fu7yCGY1jecmFHLpujyxbz017%2BLMk3IbkXrloGG%2FVHJpKWFYk%3D; path=/natural-language-understanding/api; secure; HttpOnly" ],
-      "X-Client-IP" : [ "52.203.158.64" ],
-      "X-Global-Transaction-ID" : [ "1255687228" ],
+      "Set-Cookie" : [ "Watson-DPAT=ke3iDi5zkrRgw0K%2Bfc4KlfJcyo59euhhZWjhVWPa441bXccRsP407hpQXOWTfV248z03ucXvXvowF5RMZKUykHN0cM%2B%2FuvL9PoBxR8UXRhNOwHLAHsOBTa47JHYitB4SAJLqLWDlqnmO5XVWHlSNCnDXLCZJHpUis8LNVUpCDLbYxZeA%2Bmej1BYGLWRroxie%2FTzziNBOGhhs6lW7Uvg7fvfNWIfHGJrdnh74wGhhHezrWo7%2B8KSdMqcO%2Fc9Mb88q45m1S%2B0ZDPGJEcwUI7Pk4fhb%2FEbM4b3Y8vsR8C%2F1IYAHZuoghxdsirSZVuPalbjYvbdDmixX%2BuQQINf%2Fcc4H6iCKPIfSJA0qqaKxIOco4bMyRX1du1G4CurVEHz2cw4PCj205RTEVKbe0IdFg2ARKnk9wC6%2B9tE3pgu1PFWRLxZSrowKJVD3fuQX8q1rhBr2Q3%2B3VbktrNDlzypunRvkmrZOn5nUuIeZkIW4or6rAFmiC3lN8epOVEchjZeLOnokipyolj%2BWBj8n0nXF3DtMyKi%2B4QpWLZbJ70%2FemR2zbUv6NFVcUt6Ja%2F1404MvMcVDHXKzNFiSF3xXi27SBuiZ16U%2B4GV7himZfNLDzIBAjQemUStsIcc58ejzfaS3Iefr%2FQESUf%2FnMOpZ6FUafS2L1XfNs3DvkhcsBmWNmoXDzoHfum2eftsDoZWhr5qiie3ec3vyxMimIz344JMiuK0H%2FeSOt1FZeu3zmr9KO9Lx1swikp%2BwzcNLDFYSKIhmszf4Wjy2LpOcH4zwB9QYmxrWfaTgFDDJ%2B8kg2huFQJGCXfnOuXpl27lV5OZzlWp7YJ7fZ3IespM%2BpdHt4FWvUP436rs1KoGPshXmdTLdVwGDQmiIe63eo%2BOxTVZ8qGnwqqr2NIhqj%2BSP7eOTJs0UCGzh5xwPn5zSty4lz9YNqqw9HpsAWjxITfCq766lGVJ4gqLeUzv8AWalvp0%3D; path=/natural-language-understanding/api; secure; HttpOnly" ],
+      "X-Global-Transaction-ID" : [ "88774366" ],
       "Strict-Transport-Security" : [ "max-age=31536000;" ],
-      "X-DP-Watson-Tran-ID" : [ "gateway-dp02-1255687228" ]
+      "X-DP-Watson-Tran-ID" : [ "gateway-dp01-88774366" ]
     }
   },
   "redirectEnabled" : true,

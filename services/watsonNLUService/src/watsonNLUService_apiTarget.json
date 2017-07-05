@@ -57,19 +57,122 @@
       "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.RootResponse",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ],
       "properties" : {
-        "error" : {
+        "sentiment" : {
+          "$ref" : "#/definitions/sentiment"
+        },
+        "keywords" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/keywordsEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "relations" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "categories" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/categoriesEntryItem"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "language" : {
           "type" : "string"
         },
-        "code" : {
-          "format" : "int32",
-          "type" : "integer"
+        "concepts" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "entities" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
+        },
+        "semantic_roles" : {
+          "x-WM-IS_LIST" : true,
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "uniqueItems" : false,
+          "type" : "array"
         }
       },
-      "required" : [ "code", "error" ]
+      "required" : [ "categories", "concepts", "entities", "keywords", "language", "relations", "semantic_roles", "sentiment" ]
+    },
+    "sentiment" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.sentiment",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "document" : {
+          "$ref" : "#/definitions/document"
+        }
+      },
+      "required" : [ "document" ]
     },
     "RootRequest" : {
       "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.RootRequest",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "document" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.document",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "score" : {
+          "format" : "double",
+          "type" : "number"
+        },
+        "label" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "label", "score" ]
+    },
+    "java.lang.Object" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.java.lang.Object",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "categoriesEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.categoriesEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "score" : {
+          "format" : "double",
+          "type" : "number"
+        },
+        "label" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "label", "score" ]
+    },
+    "keywordsEntryItem" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.keywordsEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ],
+      "properties" : {
+        "text" : {
+          "type" : "string"
+        },
+        "relevance" : {
+          "format" : "double",
+          "type" : "number"
+        }
+      },
+      "required" : [ "relevance", "text" ]
     }
   },
   "securityDefinitions" : {
@@ -79,7 +182,7 @@
   },
   "info" : {
     "x-WM-SERVICE_TYPE" : "RestService",
-    "x-WM-API_ID" : "7f68bb9d-3e92-4f73-aab3-a809fbc1c906",
+    "x-WM-API_ID" : "846734a0-27cd-4a5e-996b-7e75f7a6cb37",
     "x-WM-USE_PROXY_FOR_WEB" : true,
     "x-WM-SERVICE_ID" : "watsonplatform",
     "x-WM-USE_PROXY_FOR_MOBILE" : true,

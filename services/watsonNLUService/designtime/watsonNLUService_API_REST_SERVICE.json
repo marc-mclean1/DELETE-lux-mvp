@@ -3,7 +3,7 @@
   "info" : {
     "version" : "2.0",
     "x-WM-SERVICE_TYPE" : "RestService",
-    "x-WM-API_ID" : "7f68bb9d-3e92-4f73-aab3-a809fbc1c906",
+    "x-WM-API_ID" : "846734a0-27cd-4a5e-996b-7e75f7a6cb37",
     "x-WM-USE_PROXY_FOR_WEB" : true,
     "x-WM-SERVICE_ID" : "watsonplatform",
     "x-WM-USE_PROXY_FOR_MOBILE" : true
@@ -70,18 +70,115 @@
       "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.RootRequest",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     },
-    "RootResponse" : {
-      "required" : [ "code", "error" ],
+    "sentiment" : {
+      "required" : [ "document" ],
       "properties" : {
-        "error" : {
+        "document" : {
+          "$ref" : "#/definitions/document"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.sentiment",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "RootResponse" : {
+      "required" : [ "categories", "concepts", "entities", "keywords", "language", "relations", "semantic_roles", "sentiment" ],
+      "properties" : {
+        "sentiment" : {
+          "$ref" : "#/definitions/sentiment"
+        },
+        "keywords" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/keywordsEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "relations" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/categoriesEntryItem"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "language" : {
           "type" : "string"
         },
-        "code" : {
-          "type" : "integer",
-          "format" : "int32"
+        "semantic_roles" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "entities" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "x-WM-IS_LIST" : true
+        },
+        "concepts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/java.lang.Object"
+          },
+          "x-WM-IS_LIST" : true
         }
       },
       "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.RootResponse",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "document" : {
+      "required" : [ "label", "score" ],
+      "properties" : {
+        "score" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "label" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.document",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "java.lang.Object" : {
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.java.lang.Object",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "categoriesEntryItem" : {
+      "required" : [ "label", "score" ],
+      "properties" : {
+        "score" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "label" : {
+          "type" : "string"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.categoriesEntryItem",
+      "x-WM-TAGS" : [ "RestServiceVirtualController" ]
+    },
+    "keywordsEntryItem" : {
+      "required" : [ "relevance", "text" ],
+      "properties" : {
+        "text" : {
+          "type" : "string"
+        },
+        "relevance" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      },
+      "x-WM-FULLY_QUALIFIED_NAME" : "watsonNLUService.keywordsEntryItem",
       "x-WM-TAGS" : [ "RestServiceVirtualController" ]
     }
   }

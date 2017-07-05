@@ -1,7 +1,6 @@
-Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils", "$timeout", function($scope, $element, Utils, $timeout) {
+Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils", "$timeout", "$compile", function($scope, $element, Utils, $timeout, $compile) {
     "use strict";
     $scope._dataset = [];
-
     //sample request body necessary for the initial request
     $scope.requestbody = {
         "input": {
@@ -19,9 +18,21 @@ Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils
 
     }
 
-    function sendRequestBody(val) {
+    function prepRequestBody(val) {
         $scope.requestbody.input.text = val || $scope.message;
-        $scope.Variables.invokeWatson.setInput('Object', $scope.requestbody);
+        Utils.triggerFn($scope.onBeforesend);
+        //push the message from the input box to dataset as "usermessage"
+        if ($scope.requestbody.input.text) {
+            $scope._dataset.push({
+                "usermessage": $scope.requestbody.input.text
+            });
+
+        }
+        sendRequestBody($scope.requestbody)
+    }
+
+    function sendRequestBody(requestbody) {
+        $scope.Variables.invokeWatson.setInput('Object', requestbody);
         $scope.Variables.invokeWatson.invoke();
     }
 
@@ -32,7 +43,7 @@ Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils
         // this method will be triggered post initialization of the prefab.
 
         //invoke the variable
-        sendRequestBody();
+        prepRequestBody();
     };
 
     $scope.sendBtnClick = function($event, $isolateScope) {
@@ -45,12 +56,8 @@ Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils
         }
 
         //set the input message in the request body
-        sendRequestBody($scope.message);
+        prepRequestBody($scope.message);
 
-        //push the message from the input box to dataset as "usermessage"
-        $scope._dataset.push({
-            "usermessage": $scope.message
-        });
         //scroll the chat to the end
         scrollChat();
     };
@@ -79,12 +86,24 @@ Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils
 
     $scope.sendWatsonInput = function(val) {
         //set the input message in the request body
-        sendRequestBody(val);
+        prepRequestBody(val);
     };
 
+    function showButtons(inputProps) {
+        var inputType = inputProps.type,
+            inputOptions = inputProps.options,
+            $template = '<br/>';
+        if (inputType === 'buttons') {
+            _.forEach(inputOptions, function(option) {
+                $template = $template + '<button class="btn btn-default" ng-click="sendWatsonInput(\'' + option + '\')">' + option + '</button>';
+            })
+            $scope.$element.find('.app-livelist-container > li:last .popover').append($compile($template)($scope));
+        }
+    }
 
     $scope.invokeWatsononSuccess = function(variable, data) {
-        var output_text = _.get(data, 'output.text');
+        var output_text = _.get(data, 'output.text'),
+            inputProps;
 
         //set the context we received from the watson in the request body as it is needed for next call
         _.set($scope.requestbody, 'context', _.get(data, 'context'));
@@ -103,6 +122,12 @@ Application.$controller("WatsonChatbotController", ["$scope", "$element", "Utils
                 "chatbotmessage": val
             });
         });
+        $timeout(function() {
+            inputProps = _.get(data, ['context', 'input']);
+            if (inputProps) {
+                showButtons(inputProps);
+            }
+        })
 
         //scroll the chat to the end
         scrollChat();
